@@ -7,6 +7,8 @@ package {
     import flash.display.StageScaleMode;
     import flash.text.TextField;
 
+    import icon.IconDemo;
+
     import mk.MKDemo;
 
     import tower.TowerDemo;
@@ -15,7 +17,7 @@ package {
     public function Demo() {
         this.stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
-        this.addChild(new TowerDemo());
+        this.addChild(new IconDemo());
 //        var textField:TextField = new TextField();
 //        textField.text = "";
 ////        addChild(new MKDemo());

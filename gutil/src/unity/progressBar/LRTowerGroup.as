@@ -7,6 +7,7 @@ package unity.progressBar {
   import flash.display.DisplayObject;
   import flash.display.Sprite;
   import flash.geom.Matrix;
+  import flash.geom.Vector3D;
 
   public class LRTowerGroup extends Sprite {
     private var _spans:Vector.<int>;
