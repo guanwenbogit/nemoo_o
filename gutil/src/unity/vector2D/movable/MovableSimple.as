@@ -14,6 +14,7 @@ package unity.vector2D.movable {
       super();
       this._movable = new MovableElement();
     }
+
     public function update():void{
       this._movable.update();
       this.x = this._movable.position.x;
@@ -41,6 +42,11 @@ package unity.vector2D.movable {
       var target:Vector2D = new Vector2D(point.x,point.y);
       this._movable.arriveAt(target);
     }
-
+    public function isArrive(point:Point):Boolean{
+      var result:Boolean;
+      var target:Vector2D = new Vector2D(point.x,point.y);
+      result = (this._movable.position.dist(target)<1);
+      return result;
+    }
   }
 }

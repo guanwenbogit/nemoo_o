@@ -42,8 +42,8 @@ package icon {
 
     private function onTimer(event:TimerEvent):void {
       if(_target != null) {
-        for each(var ele:Element in this._icons) {
-          ele.arrive(this._target);
+        for each(var ele:Element in this._icons){
+          ele.arrive(_target);
           ele.update();
         }
       }
@@ -68,7 +68,7 @@ package icon {
       trace("complete");
       var target:LoaderInfo = event.target as LoaderInfo;
       _source = target.content as Bitmap;
-      for(var i:int = 0;i < 1;i++){
+      for(var i:int = 0;i < 100;i++){
         var bit:Bitmap = new Bitmap();
         bit.bitmapData = _source.bitmapData.clone();
         var icon:Element = new Element(bit);
