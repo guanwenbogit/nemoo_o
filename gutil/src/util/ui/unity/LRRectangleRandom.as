@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 2015/3/2.
  */
-package unity {
+package util.ui.unity {
   import flash.geom.Point;
   import flash.geom.Rectangle;
 

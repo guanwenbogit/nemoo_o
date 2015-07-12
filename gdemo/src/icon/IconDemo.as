@@ -14,10 +14,10 @@ package icon {
   import flash.net.URLRequest;
   import flash.utils.Timer;
 
-  import unity.LRButton;
+  import util.ui.unity.LRButton;
 
-  import unity.LRRectangleRandom;
-  import unity.vector2D.movable.MovableSimple;
+  import util.ui.unity.LRRectangleRandom;
+  import util.vector2D.movable.MovableSimple;
 
   public class IconDemo extends Sprite {
     private var _loader:Loader;

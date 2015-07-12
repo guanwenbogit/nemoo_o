@@ -1,13 +1,13 @@
-package unity.superMarquee {
+package util.superMarquee {
 
   import flash.events.TimerEvent;
   import flash.utils.Timer;
   import flash.events.Event;
   import flash.display.Sprite;
 
-  import gshape.LRRectangle;
+  import util.ui.shape.LRRectangle;
 
-  import unity.Velocity;
+  import util.ui.unity.Velocity;
 
   /**
    * @author wbguan

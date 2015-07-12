@@ -22,7 +22,7 @@ package animation.tool.grid {
   import flash.text.TextField;
   import flash.text.TextFieldType;
 
-  import unity.LRButton;
+  import util.ui.unity.LRButton;
 
   public class GridTool extends Sprite {
     private var _pngBtn:LRButton;
