@@ -6,7 +6,8 @@ package util.ui.unity {
   import flash.text.TextFieldAutoSize;
   import flash.text.TextFormat;
 
-  import txt.TextUtil;
+
+  import util.txt.TextUtil;
 
   /**
    * @author wbguan
