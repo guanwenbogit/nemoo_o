@@ -1,4 +1,4 @@
-package unity.superMarquee {
+package util.superMarquee {
   import flash.events.Event;
 
   /**

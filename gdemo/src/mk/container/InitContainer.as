@@ -4,7 +4,7 @@
 package mk.container {
   import flash.display.Sprite;
 
-  import gshape.LRRoundRectangle;
+  import util.ui.shape.LRRoundRectangle;
 
   import system.util.container.OContainer;
 

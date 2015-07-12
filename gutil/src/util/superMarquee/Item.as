@@ -1,10 +1,10 @@
-package unity.superMarquee {
+package util.superMarquee {
   import flash.text.TextFieldAutoSize;
   import flash.text.TextField;
   import flash.geom.Point;
   import flash.display.Sprite;
 
-  import unity.Velocity;
+  import util.ui.unity.Velocity;
 
   /**
    * @author wbguan

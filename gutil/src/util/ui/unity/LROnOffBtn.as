@@ -6,6 +6,8 @@ package util.ui.unity {
   import flash.display.Sprite;
   import flash.events.MouseEvent;
 
+  import util.ui.unity.LRButton;
+
   public class LROnOffBtn extends Sprite {
     protected var _btnOn:LRButton;
     protected var _btnOff:LRButton;

@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 2015/3/2.
  */
-package unity.vector2D {
+package util.vector2D {
   import flash.display.Graphics;
 
   public class Vector2D extends Object {

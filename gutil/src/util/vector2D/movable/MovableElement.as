@@ -1,10 +1,10 @@
 /**
  * Created by wbguan on 2015/3/2.
  */
-package unity.vector2D.movable {
+package util.vector2D.movable {
 import mx.events.ModuleEvent;
 
-import unity.vector2D.*;
+import util.vector2D.*;
   import flash.events.EventDispatcher;
 
   public class MovableElement extends MovableObj {

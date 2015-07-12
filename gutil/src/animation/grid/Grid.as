@@ -3,7 +3,7 @@ package animation.grid {
   import flash.display.Sprite;
   import flash.geom.Point;
 
-  import gshape.LRRoundRectangle;
+  import util.ui.shape.LRRoundRectangle;
 
   /**
    * @author wbguan

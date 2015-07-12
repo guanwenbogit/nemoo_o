@@ -1,11 +1,11 @@
 /**
  * Created by wbguan on 2015/3/2.
  */
-package unity.vector2D.movable {
+package util.vector2D.movable {
   import flash.display.Sprite;
   import flash.geom.Point;
 
-  import unity.vector2D.Vector2D;
+  import util.vector2D.Vector2D;
 
   public class MovableSimple extends Sprite {
     protected var _movable:MovableElement;

@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 2015/3/2.
  */
-package unity.vector2D.movable {
+package util.vector2D.movable {
   import flash.events.Event;
 
   public class MovableElementEvent extends Event {

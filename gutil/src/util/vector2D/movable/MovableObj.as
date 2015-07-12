@@ -1,8 +1,8 @@
 /**
  * Created by wbguan on 2015/3/2.
  */
-package unity.vector2D.movable {
-  import unity.vector2D.*;
+package util.vector2D.movable {
+  import util.vector2D.*;
   public class MovableObj extends Object {
 
     protected var _position:Vector2D;
