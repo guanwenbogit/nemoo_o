@@ -2,8 +2,6 @@
  * Created by wbguan on 2015/4/24.
  */
 package util.net {
-  import com.util.net.socket.SocketEvent;
-  import com.util.net.socket.SocketServer;
 
   import flash.events.EventDispatcher;
 
@@ -11,7 +9,12 @@ package util.net {
 
   import flash.utils.Timer;
   import flash.utils.getTimer;
-/*
+
+  import util.net.socket.SocketEvent;
+
+  import util.net.socket.SocketServer;
+
+  /*
 * We may ping or do some network test in the class
 * */
   public class Monitor extends EventDispatcher {

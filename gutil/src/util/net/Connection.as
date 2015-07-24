@@ -2,12 +2,15 @@
  * Created by wbguan on 2015/4/24.
  */
 package util.net {
-  import com.util.net.sdk.ConnectionEvent;
-  import com.util.net.sdk.IConnection;
-  import com.util.net.socket.SocketEvent;
-  import com.util.net.socket.SocketServer;
+
 
   import flash.events.EventDispatcher;
+
+  import util.net.sdk.ConnectionEvent;
+
+  import util.net.socket.SocketEvent;
+
+  import util.net.socket.SocketServer;
 
   public class Connection extends EventDispatcher{
     public static const RECONNECT_COUNT:int = 1;
@@ -101,7 +104,7 @@ package util.net {
     }
 
     public function get addr():String {
-      var result:String = ""
+      var result:String = "";
       if(_socket != null){
         result =_socket.addr;
       }
