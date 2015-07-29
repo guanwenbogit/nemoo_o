@@ -1,5 +1,4 @@
 package util.ui.scrollbar {
-  import com.util.ui.unity.LRButton;
 
   import flash.geom.Point;
   import flash.geom.Rectangle;
@@ -8,6 +7,8 @@ package util.ui.scrollbar {
   import flash.events.Event;
   import flash.display.DisplayObject;
   import flash.display.Sprite;
+
+  import util.ui.unity.LRButton;
 
 
   /**
