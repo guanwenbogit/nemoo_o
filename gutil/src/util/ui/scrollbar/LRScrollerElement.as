@@ -1,10 +1,11 @@
 package util.ui.scrollbar {
-	import com.util.ui.shape.LRRectangle;
 
 	import flash.events.MouseEvent;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextField;
 	import flash.display.Sprite;
+
+	import util.ui.shape.LRRectangle;
 
 
 	/**

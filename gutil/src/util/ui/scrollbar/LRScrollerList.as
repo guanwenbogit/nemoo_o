@@ -2,9 +2,10 @@
  * Created by wbguan on 2015/4/29.
  */
 package util.ui.scrollbar {
-  import com.util.ui.unity.LRButton;
 
   import flash.display.DisplayObject;
+
+  import util.ui.unity.LRButton;
 
   public class LRScrollerList extends LRScrollerPanel {
     private var _bar:LRScrollerBase;
