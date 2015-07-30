@@ -1,5 +1,5 @@
 package util.ui.unity {
-	import com.util.ui.Interface.IDispose;
+	import Interface.IDispose;
 
 	import flash.text.TextFormat;
 	import flash.text.TextField;

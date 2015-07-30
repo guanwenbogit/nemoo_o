@@ -1,10 +1,12 @@
 package util.artFont {
-  import com.util.ui.bitmapSheet.Frame;
-  import com.util.ui.bitmapSheet.Sheet;
-
   import flash.system.ApplicationDomain;
   import flash.display.BitmapData;
   import flash.display.Bitmap;
+
+  import util.ui.bitmapSheet.Frame;
+
+  import util.ui.bitmapSheet.Sheet;
+
   /**
    * @author wbguan
    */

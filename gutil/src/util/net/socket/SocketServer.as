@@ -2,7 +2,7 @@
  * Created by wbguan on 2015/4/24.
  */
 package util.net.socket {
-  import com.util.Debug;
+
 
   import flash.events.EventDispatcher;
   import flash.utils.getTimer;
@@ -107,7 +107,6 @@ package util.net.socket {
       socket.writeBytes(ba, 0, ba.bytesAvailable);
       socket.flush();
       lastTime = getTimer();
-      Debug.console("[SEND " + getTimer() + " ]"+value);
     }
     public function close():void {
       socket.close();
@@ -139,7 +138,6 @@ package util.net.socket {
       {
         _temp += rawData.substr(i, 1).replace('\r', '').replace('\n', '').replace('\r\n', '');
       }
-      Debug.console(_temp);
     }
     private function socketIOErrorHandler(event:IOErrorEvent):void {
       trace("[IO_ERROR " + getTimer() + " ]");

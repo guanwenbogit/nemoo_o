@@ -1,5 +1,6 @@
 package util.artFont {
-  import com.util.ui.bitmapSheet.Frame;
+
+  import util.ui.bitmapSheet.Frame;
 
 
   /**

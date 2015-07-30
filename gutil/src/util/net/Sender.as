@@ -2,7 +2,7 @@
  * Created by wbguan on 2015/4/24.
  */
 package util.net {
-  import com.util.net.socket.SocketServer;
+  import util.net.socket.SocketServer;
 
   public class Sender extends Object {
     private var _socket:SocketServer;

@@ -1,9 +1,10 @@
 package util.artFont {
-  import com.util.ui.unity.LRRangeContainer;
 
   import flash.display.BitmapData;
   import flash.display.Bitmap;
   import flash.display.Sprite;
+
+  import util.ui.unity.LRRangeContainer;
 
   /**
    * @author wbguan

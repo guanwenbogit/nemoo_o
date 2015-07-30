@@ -2,11 +2,12 @@
  * Created by wbguan on 2015/6/16.
  */
 package util.ui.scrollbar {
-  import com.util.ui.unity.LRButton;
 
   import flash.display.DisplayObject;
   import flash.geom.Point;
   import flash.geom.Rectangle;
+
+  import util.ui.unity.LRButton;
 
   public class LRScrollerBar extends LRScrollerBase {
     private var _isV:Boolean = true;
