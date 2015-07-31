@@ -2,11 +2,12 @@
  * Created by wbguan on 2015/5/25.
  */
 package util.ui.view {
-  import com.util.ui.shape.LRRoundRectangle;
 
   import flash.display.DisplayObject;
   import flash.display.MovieClip;
   import flash.display.Sprite;
+
+  import util.ui.shape.LRRoundRectangle;
 
   public class PreLoadingView extends Sprite {
     private var _bg:DisplayObject;

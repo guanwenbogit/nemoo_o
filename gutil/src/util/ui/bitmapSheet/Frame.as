@@ -40,6 +40,7 @@ package util.ui.bitmapSheet {
     public function get name():String {
       return _name;
     }
+    private var _rotated:Boolean = false;
     private var _spriteSourceSize:Point;
     public function Frame(data:Object) {
       this._data = data;
@@ -48,12 +49,16 @@ package util.ui.bitmapSheet {
       this._y = int(this._data["frame"]["y"]);
       this._w = int(this._data["frame"]["w"]);
       this._h = int(this._data["frame"]["h"]);
+      this._rotated = Boolean(this._data["rotated"]);
       this._spriteSourceSize = new Point(this._data["spriteSourceSize"]["x"],this._data["spriteSourceSize"]["y"]);
     }
 
     public function get spriteSourceSize() : Point {
       return _spriteSourceSize;
     }
-    
+
+    public function get rotated():Boolean {
+      return _rotated;
+    }
   }
 }

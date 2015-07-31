@@ -7,7 +7,8 @@ package {
   public class Demo extends Sprite {
     public function Demo() {
       super();
-      this.addChild(new JuggleDemo());
+//      this.addChild(new JuggleDemo());
+      this.addChild(new ImgDemo());
     }
   }
 }

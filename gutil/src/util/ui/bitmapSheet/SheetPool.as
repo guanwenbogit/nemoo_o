@@ -8,8 +8,14 @@ package util.ui.bitmapSheet {
   public class SheetPool extends Object {
     private var _map:Object = {};
     private var _keys:Array = [];
-    public function SheetPool() {
+    private var _clazz:Class;
+    public function SheetPool(clazz:Class = null) {
       super();
+      if(clazz == null) {
+        _clazz = SheetPoolElement;
+      }else{
+        _clazz = clazz;
+      }
     }
     /*
     * callBack(param:SheetPoolElement);
@@ -24,7 +30,7 @@ package util.ui.bitmapSheet {
       }
       var ele:SheetPoolElement = _map[imgUrl];
       if(ele == null){
-        ele = new SheetPoolElement();
+        ele = new _clazz();
         _map[imgUrl] = ele;
         ele.imgUrl = imgUrl;
         ele.jsonUrl = jsonUrl;

@@ -16,8 +16,10 @@ package {
     }
 
     private function onAdded(event:Event):void {
+      Starling.multitouchEnabled = true;
       starling = new Starling(Demo,this.stage);
       starling.start();
+      starling.simulateMultitouch = true;
     }
   }
 }
