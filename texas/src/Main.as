@@ -1,13 +1,22 @@
 package {
 
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.text.TextField;
 
+import game.MainGame;
+
+import starling.core.Starling;
+
 public class Main extends Sprite {
+   private var starling:Starling;
     public function Main() {
-        var textField:TextField = new TextField();
-        textField.text = "Hello, World";
-        addChild(textField);
+       this.addEventListener(Event.ADDED_TO_STAGE, onAdded)
+    }
+
+    private function onAdded(event:Event):void {
+        starling = new Starling(MainGame,this.stage);
+        starling.start();
     }
 }
 }
