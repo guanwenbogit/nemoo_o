@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 15/7/11.
  */
-package state {
+package sys.state {
   import flash.events.Event;
   import flash.events.EventDispatcher;
 

@@ -1,13 +1,15 @@
 package {
+  import starling.display.Sprite;
 
-import flash.display.Sprite;
-import flash.text.TextField;
+  import sys.state.Machine;
 
-public class Main extends Sprite {
+  public class Main extends Sprite {
+    private var machine:Machine;
     public function Main() {
-        var textField:TextField = new TextField();
-        textField.text = "Hello, World";
-        addChild(textField);
+      initInstance();
     }
-}
+    private function initInstance():void{
+      machine = new Machine();
+    }
+  }
 }

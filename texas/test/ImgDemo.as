@@ -47,6 +47,7 @@ package {
       this.addChild(_btn);
       _btn.x = 100;
       _btn.y = 100;
+
     }
 
     private function initInstance():void{

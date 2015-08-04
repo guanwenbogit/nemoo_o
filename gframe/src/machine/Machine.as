@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 15/7/11.
  */
-package state {
+package machine {
   public class Machine {
     protected static const IDLE:String = "IDLE";
     private var _map:Object = {};

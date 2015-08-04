@@ -8,7 +8,8 @@ package {
     public function Demo() {
       super();
 //      this.addChild(new JuggleDemo());
-      this.addChild(new ImgDemo());
+//      this.addChild(new ImgDemo());
+      this.addChild(new PlaneDemo());
     }
   }
 }

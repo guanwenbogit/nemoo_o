@@ -5,7 +5,7 @@ package util.ui.shape {
 	 * @author wbguan
 	 */
 	public class LRCircle extends Shape {
-		protected var _radius:Number;
+		private var _radius:Number;
 		protected var _color:uint;
 		protected var _alpha:Number;
 		public function LRCircle(radius : Number,color : uint = 0xffffff,alpha:Number = 1.0) {
@@ -19,6 +19,10 @@ package util.ui.shape {
 			this.graphics.beginFill(this._color,this._alpha);
 			this.graphics.drawCircle(_radius, _radius, _radius);
 			this.graphics.endFill();
+		}
+
+		public function get radius():Number {
+			return _radius;
 		}
 	}
 }
