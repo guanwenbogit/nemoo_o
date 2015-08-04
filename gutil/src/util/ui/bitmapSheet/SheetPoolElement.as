@@ -15,8 +15,8 @@ package util.ui.bitmapSheet {
     public var retried:Boolean = false;
 
     private var _success:Boolean = false;
-    private var _frames:Vector.<Frame> = new <Frame>[];
-    private var _bitmapData:BitmapData ;
+    protected var _frames:Vector.<Frame> = new <Frame>[];
+    protected var _bitmapData:BitmapData ;
     private var _sheet:Sheet;
     private var _json:SheetJson = new SheetJson();
     private var _img:Bitmap;
@@ -53,7 +53,7 @@ package util.ui.bitmapSheet {
       }
     }
 
-    private function init():void{
+    protected function init():void{
       _json.init(_jsonObj)
       this._bitmapData = _img.bitmapData;
       this._sheet = new Sheet(this._bitmapData);

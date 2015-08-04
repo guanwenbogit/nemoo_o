@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 15/7/11.
  */
-package state {
+package sys.state {
 public interface IState {
   function get next():String;
   function set name(value:String);

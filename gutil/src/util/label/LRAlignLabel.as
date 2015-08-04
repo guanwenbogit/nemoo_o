@@ -3,9 +3,6 @@
  */
 package util.label {
   import flash.display.DisplayObject;
-  import flash.display.Sprite;
-
-  import robotlegs.bender.extensions.matching.PackageFilter;
 
   public class LRAlignLabel extends Object {
     public static const LEFT:String = "left";

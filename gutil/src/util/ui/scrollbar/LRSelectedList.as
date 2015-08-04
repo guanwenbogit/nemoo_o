@@ -3,12 +3,13 @@
  */
 package util.ui.scrollbar {
 
-  import com.util.ui.shape.LRRectangle;
 
   import flash.display.DisplayObject;
 
   import flash.events.MouseEvent;
   import flash.geom.Point;
+
+  import util.ui.shape.LRRectangle;
 
   public class LRSelectedList extends LRScrollerPanel {
     private var _clazz:Class;

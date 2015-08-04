@@ -1,8 +1,5 @@
 package util.img {
-  import com.util.Debug;
 
-  import flash.events.ProgressEvent;
-  import flash.net.URLStream;
   import flash.geom.Point;
   import flash.display.LoaderInfo;
   import flash.display.BitmapData;

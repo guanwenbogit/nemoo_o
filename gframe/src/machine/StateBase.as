@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 15/7/12.
  */
-package state {
+package machine {
   public class StateBase implements IState{
     protected var _name:String = "";
     protected var _next:String = "";
@@ -63,5 +63,6 @@ package state {
 
     public function breakOff():void {
     }
+
   }
 }

@@ -2,15 +2,14 @@
  * Created by wbguan on 2015/3/6.
  */
 package util.sound {
-
-  import com.util.SimpleLoader;
-  import com.util.reflect.ReflectionUtil;
-
   import flash.display.Loader;
   import flash.events.Event;
 
   import flash.media.Sound;
   import flash.media.SoundChannel;
+
+  import util.SimpleLoader;
+  import util.reflect.ReflectionUtil;
 
   public class SoundManager {
     protected static var _instance:SoundManager;

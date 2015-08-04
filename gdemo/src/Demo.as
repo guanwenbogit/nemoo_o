@@ -9,6 +9,8 @@ package {
 
     import icon.IconDemo;
 
+    import imgRect.ImgRectTool;
+
     import mk.MKDemo;
 
     import tower.TowerDemo;
@@ -17,7 +19,8 @@ package {
     public function Demo() {
         this.stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
-        this.addChild(new IconDemo());
+//        this.addChild(new IconDemo());
+        this.addChild(new ImgRectTool());
 //        var textField:TextField = new TextField();
 //        textField.text = "";
 ////        addChild(new MKDemo());

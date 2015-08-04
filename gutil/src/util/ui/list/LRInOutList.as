@@ -2,10 +2,11 @@
  * Created by wbguan on 2015/4/30.
  */
 package util.ui.list {
-  import com.util.ui.unity.LRRangeContainer;
 
   import flash.display.DisplayObject;
   import flash.display.Sprite;
+
+  import util.ui.unity.LRRangeContainer;
 
   public class LRInOutList extends Sprite {
     private var _items:Vector.<LRItem> = new <LRItem>[];

@@ -102,6 +102,10 @@ package util.vector2D {
       var dy:Number = v2.y - y;
       return dx * dx + dy * dy;
     }
+    public function append(v2:Vector2D):void{
+      this._x += v2.x;
+      this._y += v2.y;
+    }
     public function add(v2:Vector2D):Vector2D {
       return new Vector2D(_x + v2.x, _y + v2.y);
     }
