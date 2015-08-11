@@ -4,8 +4,8 @@
 package model {
   import util.vector2D.Vector2D;
 
-  public class Plane {
-    private var _name:String = "";
+  public class MObject extends VObject{
+
     private var _mass:int = 1;
     private var _speed:int = 1;
     private var _power:int = 1;
@@ -13,7 +13,7 @@ package model {
     private var _v:Vector2D;
     private var _f:Vector2D;
     private var _a:Vector2D;
-    public function Plane() {
+    public function MObject() {
       initInstance();
     }
 
@@ -24,8 +24,8 @@ package model {
       _f = new Vector2D();
     }
 
-    public function init(obj:Object):void{
-      _name = obj["name"];
+    override public function init(obj:Object):void{
+      super.init(obj);
       _mass = obj["mass"];
       _speed = obj["speed"];
       _power = obj["power"];
@@ -60,9 +60,6 @@ package model {
           _v.length = _speed;
         }
       }
-    }
-    public function get name():String {
-      return _name;
     }
 
     public function get mass():int {

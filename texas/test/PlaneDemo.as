@@ -5,7 +5,7 @@ package {
   import flash.geom.Point;
   import flash.utils.getTimer;
 
-  import model.Plane;
+  import model.MObject;
   import model.PlaneElement;
 
   import starling.animation.IAnimatable;
@@ -24,11 +24,11 @@ package {
   public class PlaneDemo extends Sprite implements IAnimatable{
     private var _bg:Quad;
     private var _last:Vector2D ;
-    private var _plane:Plane;
+    private var _plane:MObject;
     private var _planeElement:PlaneElement;
     public function PlaneDemo() {
       super();
-      _plane = new Plane();
+      _plane = new MObject();
       _plane.init({name:"egg",speed:100,mass:5,power:10});
       _planeElement = new PlaneElement(_plane);
       this.addEventListener(Event.ADDED_TO_STAGE, onAdded);

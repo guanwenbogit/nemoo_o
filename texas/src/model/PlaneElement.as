@@ -9,10 +9,10 @@ package model {
   import util.ui.shape.LRCircle;
 
   public class PlaneElement extends Sprite implements IAnimatable {
-    private var _core:Plane;
+    private var _core:MObject;
 
 
-    public function PlaneElement(core:Plane) {
+    public function PlaneElement(core:MObject) {
       super();
       _core = core;
       this.addChild(new Quad(50, 50, 0xffff0000));

@@ -162,7 +162,9 @@ package tools.imgRect {
     }
 
     private function onExport(event:MouseEvent):void {
-
+      file = new FileReference();
+      file.save(this._imgModel.export(),this._imgModel.name+".json");
+      trace(this._imgModel.export());
     }
 
     private function onReset(event:MouseEvent):void {
@@ -221,9 +223,9 @@ package tools.imgRect {
     private function onImgClick(event:MouseEvent):void {
 
     }
-    private var file:FileReference = new FileReference();
+    private var file:FileReference;
     private function onLoaded(event:MouseEvent):void {
-
+      file = new FileReference();
       var filter:Array = [new FileFilter("png file","*.png")];
       file.browse(filter);
       file.addEventListener(Event.SELECT, onSelected);
@@ -243,6 +245,7 @@ package tools.imgRect {
         this.removeChild(this._png);
       }
       this._png = info.content;
+      this._imgModel.name = file.name;
       this._imgModel.rect = this._png.getRect(this);
       this._imgModel.register = new Point(this._p.x,this._p.y);
       this.addChildAt(_png,0);
