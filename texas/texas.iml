@@ -5,7 +5,6 @@
       <configuration name="texas" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/bin">
         <dependencies target-player="11.5">
           <entries>
-
             <entry library-id="fbea9a96-2dcc-49e8-9380-a876255be224">
               <dependency linkage="Merged" />
             </entry>
@@ -33,11 +32,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-<<<<<<< HEAD
-        <properties id="2bac408a-458f-4b64-85a9-d353386fd8e5" />
-=======
         <properties id="fbea9a96-2dcc-49e8-9380-a876255be224" />
->>>>>>> f12bcaf81bf4623444143607b585fbb780cc5dc5
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
         </CLASSES>
@@ -46,9 +41,6 @@
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-<<<<<<< HEAD
-=======
     <orderEntry type="module" module-name="gutil" exported="" />
->>>>>>> f12bcaf81bf4623444143607b585fbb780cc5dc5
   </component>
 </module>

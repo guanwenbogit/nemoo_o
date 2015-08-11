@@ -53,7 +53,7 @@ package tools.imgRect {
       obj["pivotY"] = _register.y;
       obj["arr"] = [];
       for each(var c:ImgCircle in this._circles){
-        var cOjb:Object = {"r":c.circle.radius,"x":c.x,"y":c.y};
+        var cOjb:Object = {"r":c.circle.radius,"x":c.x+c.circle.radius,"y":c.y+c.circle.radius};
         obj["arr"].push(cOjb);
       }
       result = JSON.stringify(obj);

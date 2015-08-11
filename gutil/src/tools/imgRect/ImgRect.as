@@ -52,7 +52,7 @@ package tools.imgRect {
       super();
       initInstance();
       initListener();
-      this.addChild(new LRCircle(10,COLOR,0.5));
+
     }
 
     private function initInstance():void{
@@ -108,8 +108,8 @@ package tools.imgRect {
     private function onPChange(event:Event):void {
       var px:int = int(_pxTxt.text)||0;
       var py:int = int(_pyTxt.text)||0;
-      _p.x = px;
-      _p.y = py;
+      _p.x = px-2;
+      _p.y = py-2;
       this._imgModel.register = new Point(this._p.x,this._p.y);
     }
     private function mouseMove():void{

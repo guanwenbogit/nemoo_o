@@ -54,14 +54,37 @@ package model {
     }
     public function updateV():void{
       if(!_a.isZero()) {
-        trace("update v ");
+//        trace("update v ");
         _v.append(_a);
         if(_v.length>_speed){
           _v.length = _speed;
         }
       }
     }
+    public function hitTest(obj:MObject):Boolean{
+      var result:Boolean = false;
+      for each(var c:Object in obj.vs){
+        for each(var subc:Object in this._vs){
+          result = isHit(c,subc,obj);
+          if(result){
+            break;
+          }
+        }
+      }
+      return result;
+    }
 
+    private function isHit(c1:Object, c2:Object, obj1:MObject):Boolean{
+      var result:Boolean = false;
+      var r1:int = c1["r"];
+      var r2:int = c2["r"];
+      var R:int = (r1+r2)*(r1+r2);
+      var X:int = (c1["x"]+obj1.position.x-c2["x"]-this.position.x);
+      var Y:int = (c1["y"]+obj1.position.y-c2["y"]-this.position.y);
+      var D:int = X*X+Y*Y;
+      result = (D<=R)
+      return result;
+    }
     public function get mass():int {
       return _mass;
     }
