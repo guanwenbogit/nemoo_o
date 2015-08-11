@@ -5,8 +5,9 @@ package {
   import flash.geom.Point;
   import flash.utils.getTimer;
 
-  import model.Plane;
+  import model.MObject;
   import model.PlaneElement;
+  import model.PlaneObj;
 
   import starling.animation.IAnimatable;
 
@@ -24,13 +25,18 @@ package {
   public class PlaneDemo extends Sprite implements IAnimatable{
     private var _bg:Quad;
     private var _last:Vector2D ;
-    private var _plane:Plane;
+    private var _plane:MObject;
+    private var _p:MObject;
     private var _planeElement:PlaneElement;
+    private var _pElement:PlaneElement;
     public function PlaneDemo() {
       super();
-      _plane = new Plane();
+      _plane = new PlaneObj();
       _plane.init({name:"egg",speed:100,mass:5,power:10});
+      _p = new PlaneObj();
+      _p.init({name:"p",speed:100,mass:5,power:10});
       _planeElement = new PlaneElement(_plane);
+      _pElement = new PlaneElement(_p);
       this.addEventListener(Event.ADDED_TO_STAGE, onAdded);
     }
 
@@ -39,7 +45,7 @@ package {
       this.addChild(_bg)
       this.addEventListener(TouchEvent.TOUCH, onTouch);
       this.addChild(_planeElement);
-
+      this.addChild(_pElement);
       Starling.juggler.add(this);
     }
 
@@ -58,15 +64,20 @@ package {
         var f:Vector2D = new Vector2D();
         f.x = c.x - _planeElement.x;
         f.y = c.y - _planeElement.y;
-        trace("v len "+_plane.v.length);
-        if(_plane.v.length>_plane.position.subtract(c).length||_plane.position.subtract(c).length == 0){
-          _plane.arrive(c.x,c.y);
-        }else {
-          _plane.setF(f);
-        }
+//        trace("v len "+_plane.v.length);
+        _plane.arrive(c.x,c.y);
+//        if(_plane.v.length>_plane.position.subtract(c).length||_plane.position.subtract(c).length == 0){
+//          _plane.arrive(c.x,c.y);
+//        }else {
+//          _plane.setF(f);
+//        }
         _planeElement.advanceTime(time);
       }else{
-        trace("touch null");
+//        trace("touch null");
+      }
+
+      if(_p.hitTest(_plane)){
+        trace("plane crash !!!!");
       }
     }
   }
