@@ -1,15 +1,25 @@
 package {
-  import starling.display.Sprite;
+import starling.display.Sprite;
 
-  import sys.state.Machine;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.text.TextField;
 
-  public class Main extends Sprite {
-    private var machine:Machine;
+import game.MainGame;
+
+import starling.core.Starling;
+
+public class Main extends Sprite {
+    private var starling:Starling;
+
     public function Main() {
-      initInstance();
+        this.addEventListener(Event.ADDED_TO_STAGE, onAdded)
     }
-    private function initInstance():void{
-      machine = new Machine();
+
+    private function onAdded(event:Event):void {
+        starling = new Starling(MainGame, this.stage);
+        starling.start();
     }
-  }
 }
+}
+
