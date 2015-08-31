@@ -12,8 +12,8 @@ package util.ui.scrollbar {
   import flash.geom.Rectangle;
 
   import util.ui.shape.LRRectangle;
+  import util.ui.unity.BaseBtn;
 
-  import util.ui.unity.LRButton;
 
   /**
    * @author wbguan
@@ -30,7 +30,7 @@ package util.ui.scrollbar {
     private var _appStage:Stage;
     private var _enbleDrag:Boolean = true;
     private var _oRect:Rectangle;
-    public function LRDragScrollerPanel(w:int, h:int, bar:LRButton,bg:DisplayObject,margin:int = 5, max:int = 50,scaleBar:Boolean = true) {
+    public function LRDragScrollerPanel(w:int, h:int, bar:BaseBtn,bg:DisplayObject,margin:int = 5, max:int = 50,scaleBar:Boolean = true) {
       _dragRect = new Rectangle(0,0,1,h);
       _oRect = new Rectangle(0,0,w,h);
       _scollerBar = new LRScrollerBase(bar, bg, h);

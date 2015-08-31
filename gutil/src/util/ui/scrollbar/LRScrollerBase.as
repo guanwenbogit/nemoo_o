@@ -8,7 +8,8 @@ package util.ui.scrollbar {
   import flash.display.DisplayObject;
   import flash.display.Sprite;
 
-  import util.ui.unity.LRButton;
+  import util.ui.unity.BaseBtn;
+
 
 
   /**
@@ -18,7 +19,7 @@ package util.ui.scrollbar {
     //==========================================================================
     //  display object
     //==========================================================================
-    protected var _bar:LRButton;
+    protected var _bar:BaseBtn;
     protected var _bg:DisplayObject;
     protected var _appStage:Stage;
     protected var _barGrid:Rectangle;
@@ -37,7 +38,7 @@ package util.ui.scrollbar {
   //==========================================================================
     public var onScolling:Function;
     
-    public function LRScrollerBase(bar:LRButton,bg:DisplayObject,distance:Number,scaleBar:Boolean = true) {
+    public function LRScrollerBase(bar:BaseBtn,bg:DisplayObject,distance:Number,scaleBar:Boolean = true) {
       this._bar = bar;
       this._bg = bg;
       this._distance = distance;
@@ -52,7 +53,7 @@ package util.ui.scrollbar {
       this._scrollBarOriginalPoint = new Point(this._bar.x,this._bar.y);
       this._bg.height = this._distance;
       if(_scaleBar) {
-        this._bar.setScale9Height(this._distance);
+        this._bar.height = this._distance;
       }
       this._rectangle = new Rectangle(this._scrollBarOriginalPoint.x,this._scrollBarOriginalPoint.y,0,this._bg.getRect(this).height - this._bar.getRect(this).height);
       this._orginalRectangle = this._rectangle.clone();
@@ -168,7 +169,7 @@ package util.ui.scrollbar {
         scale = scale < 0.1 ? 0.1 : scale;
         var span:Number = this._distance * scale * this._scale < MINBAR_LENGTH ? MINBAR_LENGTH : this._distance * scale * this._scale;
         span = Math.floor(span);
-        this._bar.setScale9Height(span);
+        this._bar.height = span;
       }
       trace("[LRScrollerBase/setBarScale] "+this._bar.getRect(this).height+"|" + _bar.alpha + "|" + _bar.visible + "|"+_bar.parent + "|" +_bar.y);
       this._rectangle.height = this._bg.getRect(this).height - this._bar.getRect(this).height;

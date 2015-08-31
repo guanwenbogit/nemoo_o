@@ -20,7 +20,7 @@ package util.ui.unity {
   /**
    * @author wbguan
    */
-  public class LRButton extends Sprite implements IDispose {
+  public class LRButton extends BaseBtn implements IDispose {
     protected var upState : String = "up";
     protected var downState : String = "down";
     protected var overState : String = "over";
@@ -119,11 +119,11 @@ package util.ui.unity {
       }
     }
 
-    public function lockState() : void {
+    override public function lockState() : void {
       this.removeMcListener();
     }
 
-    public function unlockState() : void {
+    override public function unlockState() : void {
       this.addMcListener();
       this._isDown = false;
     }
@@ -156,7 +156,7 @@ package util.ui.unity {
       this._bg.height = height;
     }
     
-    public function  setMouseOver() : void {
+    override public function  setMouseOver() : void {
       if(this._bg is MovieClip){
         (this._bg as MovieClip).gotoAndStop(this.overState);
         var tf:TextField = _bg["label"] as TextField;
@@ -168,7 +168,7 @@ package util.ui.unity {
       this._isDown = false;
     }
 
-    public function setMouseDown() : void {
+    override public function setMouseDown() : void {
       if(this._bg is MovieClip){
         (this._bg as MovieClip).gotoAndStop(this.downState);
         var tf:TextField = _bg["label"] as TextField;
@@ -180,7 +180,7 @@ package util.ui.unity {
       this._isDown = true;
     }
 
-    public function setMouseUp() : void {
+    override public function setMouseUp() : void {
       if(this._bg is MovieClip){
         (this._bg as MovieClip).gotoAndStop(this.upState);
         var tf:TextField = _bg["label"] as TextField;

@@ -11,6 +11,8 @@ package {
 
     import imgRect.ImgRectTool;
 
+    import imgUI.NDemo;
+
     import mk.MKDemo;
 
     import tower.TowerDemo;
@@ -20,12 +22,13 @@ package {
         this.stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
 //        this.addChild(new IconDemo());
-        this.addChild(new ImgRectTool());
+//        this.addChild(new ImgRectTool());
 //        var textField:TextField = new TextField();
 //        textField.text = "";
 ////        addChild(new MKDemo());
 ////        addChild(textField);
 //        addChild(new GridTool());
+        this.addChild(new NDemo());
     }
 }
 }

@@ -1,6 +1,7 @@
 package util.ui.bitmapSheet {
 
   import flash.display.PixelSnapping;
+  import flash.geom.Matrix;
   import flash.geom.Point;
   import flash.geom.Rectangle;
   import flash.display.Bitmap;
@@ -39,9 +40,20 @@ package util.ui.bitmapSheet {
       return result;
     }
     public function getTileBitmapData(frame:Frame):BitmapData {
-      var data:BitmapData = new BitmapData(frame.w, frame.h, true, 0xffffffff);
-      data.copyPixels(this._bitmapData, new Rectangle(frame.x, frame.y, frame.w, frame.h), new Point(0, 0));
-      return data;
+      var tmp:BitmapData = new BitmapData(frame.w, frame.h, true, 0xffffffff);
+      tmp.copyPixels(this._bitmapData, new Rectangle(frame.x, frame.y, frame.w, frame.h), new Point(0, 0));
+      var result:BitmapData;
+      if(frame.rotated){
+        result = new BitmapData(frame.h,frame.w,true, 0xffffffff);
+        var m:Matrix = new Matrix();
+        m.rotate(-Math.PI/2);
+        m.translate(0,tmp.width);
+        result.draw(tmp,m);
+      }else{
+        result = tmp
+      }
+
+      return result;
     }
   }
 }

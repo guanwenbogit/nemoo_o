@@ -27,7 +27,9 @@ package util.ui.bitmapSheet {
     public function SheetPoolElement() {
       super();
     }
-
+    public function setBitmapData(data:BitmapData):void{
+      _bitmapData = data;
+    }
     public function load():void {
       if(loader == null){
         loader = new SheetLoader();
@@ -82,6 +84,11 @@ package util.ui.bitmapSheet {
       result = this._sheet.getTileBitMap(getFrame(name));
       return result;
     }
+    public function getBitmapData(name):BitmapData{
+      var result:BitmapData;
+      result = this._sheet.getTileBitmapData(getFrame(name));
+      return result;
+    }
     private function getFrame(name:String):Frame{
       var result:Frame;
       for each(var frame:Frame in this._frames){
@@ -123,6 +130,10 @@ package util.ui.bitmapSheet {
 
     public function get success():Boolean {
       return _success;
+    }
+
+    public function get frames():Vector.<Frame> {
+      return _frames;
     }
   }
 }

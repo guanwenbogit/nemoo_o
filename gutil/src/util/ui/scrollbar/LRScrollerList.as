@@ -5,13 +5,15 @@ package util.ui.scrollbar {
 
   import flash.display.DisplayObject;
 
-  import util.ui.unity.LRButton;
+  import util.ui.unity.BaseBtn;
+
+
 
   public class LRScrollerList extends LRScrollerPanel {
     private var _bar:LRScrollerBase;
     private var _class:Class;
     public function LRScrollerList(clazz:Class,w:int, h:int,barH:int,
-                                   bar:LRButton,bg:DisplayObject,
+                                   bar:BaseBtn,bg:DisplayObject,
                                    margin:int = 5, max:int = 50,scaleBar:Boolean = true) {
       _bar = new LRScrollerBase(bar, bg, barH,scaleBar);
       _bar.onScolling = onScrolling;

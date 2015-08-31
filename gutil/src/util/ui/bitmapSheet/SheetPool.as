@@ -3,6 +3,7 @@
  */
 package util.ui.bitmapSheet {
 
+  import flash.display.BitmapData;
   import flash.display.Loader;
 
   public class SheetPool extends Object {
@@ -16,6 +17,20 @@ package util.ui.bitmapSheet {
       }else{
         _clazz = clazz;
       }
+    }
+    public function getElement(name:String,json:Object,bitmapData:BitmapData):SheetPoolElement{
+      var result:SheetPoolElement;
+      if(_keys.indexOf(name)<0){
+        _keys.push(name);
+      }
+      var ele:SheetPoolElement = _map[name];
+      if(ele == null) {
+        ele = new _clazz();
+        _map[name] = ele;
+        ele.setBitmapData(bitmapData);
+      }
+      result = ele;
+      return result;
     }
     /*
     * callBack(param:SheetPoolElement);
