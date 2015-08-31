@@ -5,9 +5,9 @@ package log {
   import flash.display.DisplayObject;
   import flash.display.Sprite;
 
-  import util.ui.scrollbar.LRScrollerList;
-  import util.ui.shape.LRRectangle;
-  import util.ui.unity.LRButton;
+  import com.util.ui.scrollbar.LRScrollerList;
+  import com.util.ui.shape.LRRectangle;
+  import com.util.ui.unity.LRButton;
 
   public class LogPanel extends Sprite {
     private var _list:LRScrollerList;

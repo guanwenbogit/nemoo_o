@@ -4,7 +4,7 @@
 package log {
   import flash.text.TextField;
 
-  import util.ui.scrollbar.LRScrollerElement;
+  import com.util.ui.scrollbar.LRScrollerElement;
 
   public class LogItem extends LRScrollerElement {
 

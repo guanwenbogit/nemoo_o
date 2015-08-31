@@ -13,7 +13,7 @@ package tower {
   import flash.system.System;
   import flash.utils.Timer;
 
-  import util.ui.unity.LRButton;
+  import com.util.ui.unity.LRButton;
 
   import unity.progressBar.LRTower;
   import unity.progressBar.LRTowerGroup;

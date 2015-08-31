@@ -3,7 +3,7 @@
  */
 package mk.container {
   import flash.display.Sprite;
-  import util.ui.shape.LRRoundRectangle;
+  import com.util.ui.shape.LRRoundRectangle;
   import system.util.container.OContainer;
 
   public class WelcomeContainer extends OContainer{

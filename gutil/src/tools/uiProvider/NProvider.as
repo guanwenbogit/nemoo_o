@@ -6,8 +6,8 @@ package tools.uiProvider {
 
   import tools.uiProvider.NOrg;
 
-  import util.ui.bitmapSheet.SheetPool;
-  import util.ui.unity.NButton;
+  import com.util.ui.bitmapSheet.SheetPool;
+  import com.util.ui.unity.NButton;
 
   public class NProvider extends Object {
     private var _pool:SheetPool;

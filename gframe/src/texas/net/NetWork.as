@@ -4,11 +4,11 @@
 package texas.net {
   import flash.events.Event;
 
-  import util.net.Connection;
-  import util.net.http.HTTPCall;
-  import util.net.sdk.ConnectionEvent;
+  import com.util.net.Connection;
+  import com.util.net.http.HTTPCall;
+  import com.util.net.sdk.ConnectionEvent;
 
-  import util.net.sdk.IConnection;
+  import com.util.net.sdk.IConnection;
 
   public class NetWork implements IConnection{
     private var _connect:Connection;

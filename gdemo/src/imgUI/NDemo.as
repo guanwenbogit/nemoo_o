@@ -6,10 +6,10 @@ package imgUI {
 
   import tools.uiProvider.NOrg;
 
-  import util.ui.bitmapSheet.SheetPool;
-  import util.ui.bitmapSheet.SheetPoolElement;
-  import util.ui.unity.LRButton;
-  import util.ui.unity.NButton;
+  import com.util.ui.bitmapSheet.SheetPool;
+  import com.util.ui.bitmapSheet.SheetPoolElement;
+  import com.util.ui.unity.LRButton;
+  import com.util.ui.unity.NButton;
 
   public class NDemo extends Sprite {
     private var _pool:SheetPool;

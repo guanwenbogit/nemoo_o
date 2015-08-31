@@ -5,11 +5,11 @@ package tools.uiProvider {
   import flash.display.Bitmap;
   import flash.display.BitmapData;
 
-  import util.ui.bitmapSheet.Frame;
+  import com.util.ui.bitmapSheet.Frame;
 
-  import util.ui.bitmapSheet.SheetPoolElement;
+  import com.util.ui.bitmapSheet.SheetPoolElement;
 
-  import util.ui.unity.NButton;
+  import com.util.ui.unity.NButton;
 
   public class NOrg extends Object {
     private var _name:String;

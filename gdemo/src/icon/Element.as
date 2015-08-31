@@ -4,7 +4,7 @@
 package icon {
   import flash.display.Bitmap;
 
-  import util.vector2D.movable.MovableSimple;
+  import com.util.vector2D.movable.MovableSimple;
   public class Element extends MovableSimple {
     private var _pic:Bitmap;
     public function Element(pic:Bitmap) {

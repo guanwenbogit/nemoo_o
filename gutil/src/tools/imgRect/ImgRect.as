@@ -23,9 +23,9 @@ package tools.imgRect {
   import flash.text.TextFieldType;
   import flash.ui.Keyboard;
 
-  import util.ui.shape.LRCircle;
+  import com.util.ui.shape.LRCircle;
 
-  import util.ui.unity.LRButton;
+  import com.util.ui.unity.LRButton;
   [SWF(width = 600,height = 600,backgroundColor = 0xffffff)]
   public class ImgRect extends Sprite {
     private var _loadBtn:LRButton;

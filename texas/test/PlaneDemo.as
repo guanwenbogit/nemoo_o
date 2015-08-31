@@ -20,7 +20,7 @@ package {
   import starling.events.TouchEvent;
   import starling.events.TouchPhase;
 
-  import util.vector2D.Vector2D;
+  import com.util.vector2D.Vector2D;
 
   public class PlaneDemo extends Sprite implements IAnimatable{
     private var _bg:Quad;

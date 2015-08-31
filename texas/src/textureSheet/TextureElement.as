@@ -6,9 +6,9 @@ package textureSheet {
 
   import starling.textures.Texture;
 
-  import util.ui.bitmapSheet.Frame;
+  import com.util.ui.bitmapSheet.Frame;
 
-  import util.ui.bitmapSheet.SheetPoolElement;
+  import com.util.ui.bitmapSheet.SheetPoolElement;
 
   public class TextureElement extends SheetPoolElement {
     private var _texture:Texture;

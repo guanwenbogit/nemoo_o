@@ -19,10 +19,10 @@ package {
 
   import textureSheet.TextureElement;
 
-  import util.GButton;
+  import com.util.GButton;
 
-  import util.ui.bitmapSheet.SheetPool;
-  import util.ui.bitmapSheet.SheetPoolElement;
+  import com.util.ui.bitmapSheet.SheetPool;
+  import com.util.ui.bitmapSheet.SheetPoolElement;
 
   public class ImgDemo extends Sprite {
     private var _img:Image;

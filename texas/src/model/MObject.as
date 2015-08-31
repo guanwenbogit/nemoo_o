@@ -2,7 +2,7 @@
  * Created by wbguan on 2015/8/3.
  */
 package model {
-  import util.vector2D.Vector2D;
+  import com.util.vector2D.Vector2D;
 
   public class MObject extends VObject{
 

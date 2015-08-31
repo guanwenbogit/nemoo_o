@@ -4,7 +4,7 @@
 package tools.imgRect {
   import flash.display.Sprite;
 
-  import util.ui.shape.LRCircle;
+  import com.util.ui.shape.LRCircle;
 
   public class ImgCircle extends Sprite {
     private var _circle:LRCircle;

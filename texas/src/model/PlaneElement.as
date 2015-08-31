@@ -9,7 +9,7 @@ package model {
   import starling.display.Quad;
   import starling.display.Sprite;
 
-  import util.ui.shape.LRCircle;
+  import com.util.ui.shape.LRCircle;
 
   public class PlaneElement extends Sprite implements IAnimatable {
     [Embed(source = "plane.png")]
