@@ -6,6 +6,7 @@ package com.util.ui.list {
    */
   public class LRRadioBtnEvent extends Event {
     public static const CHANGE_EVENT:String = "CHANGE_EVENT";
+    public static const SELECT_CURRENT_EVENT:String = "SELECT_CURRENT_EVENT";
     public var data:Object ;
     public function LRRadioBtnEvent(type:String,data:Object, bubbles:Boolean = true, cancelable:Boolean = false) {
       this.data = data;

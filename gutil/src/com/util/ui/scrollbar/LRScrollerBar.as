@@ -24,7 +24,7 @@ package com.util.ui.scrollbar {
       this._scrollBarOriginalPoint = new Point(this._bar.x,this._bar.y);
       this._bg[wh] = this._distance;
       if(_scaleBar) {
-        this._bar.setScale9Height(this._distance);
+        this._bar.height = this._distance;
       }
       var w:int = 0;
       var h:int = 0;

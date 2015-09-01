@@ -24,6 +24,7 @@ package com.util.ui.bitmapSheet {
       this._bitmap = new Bitmap();
       this._bitmap.bitmapData = this._bitmapData;
     }
+    private var _dataMap:Object = {};
     
     public function get bitmap() : Bitmap {
       return _bitmap;
@@ -33,27 +34,35 @@ package com.util.ui.bitmapSheet {
       var result:Bitmap = new Bitmap();
       result.smoothing = true;
       result.pixelSnapping = PixelSnapping.NEVER;
-      var data:BitmapData = new BitmapData(frame.w, frame.h, true, 0xffffffff);
-      data.copyPixels(this._bitmapData, new Rectangle(frame.x, frame.y, frame.w, frame.h), new Point(0, 0));
+      var data:BitmapData = getTileBitmapData(frame);
       result.bitmapData = data;
-
       return result;
     }
     public function getTileBitmapData(frame:Frame):BitmapData {
-      var tmp:BitmapData = new BitmapData(frame.w, frame.h, true, 0xffffffff);
-      tmp.copyPixels(this._bitmapData, new Rectangle(frame.x, frame.y, frame.w, frame.h), new Point(0, 0));
-      var result:BitmapData;
-      if(frame.rotated){
-        result = new BitmapData(frame.h,frame.w,true, 0xffffffff);
-        var m:Matrix = new Matrix();
-        m.rotate(-Math.PI/2);
-        m.translate(0,tmp.width);
-        result.draw(tmp,m);
-      }else{
-        result = tmp
+      var result:BitmapData = this._dataMap[frame.name];
+      if(result == null) {
+        var tmp:BitmapData = new BitmapData(frame.w, frame.h, true, 0x00ffffff);
+        tmp.copyPixels(this._bitmapData, new Rectangle(frame.x, frame.y, frame.w, frame.h), new Point(0, 0));
+        if (frame.rotated) {
+          result = new BitmapData(frame.h, frame.w, true, 0x00ffffff);
+          var m:Matrix = new Matrix();
+          m.rotate(-Math.PI / 2);
+          m.translate(0, tmp.width);
+          result.draw(tmp, m);
+        } else {
+          result = tmp
+        }
+        this._dataMap[frame.name] = result;
       }
-
       return result;
+    }
+    public function dispose():void{
+      for(var key:String in _dataMap){
+        var result:BitmapData = _dataMap[key];
+        result.dispose();
+        _dataMap[key] = null;
+      }
+      _dataMap = {};
     }
   }
 }

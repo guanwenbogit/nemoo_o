@@ -7,7 +7,6 @@ package com.util.ui.bitmapSheet {
   import flash.display.DisplayObject;
   import flash.display.PixelSnapping;
 
-
   public class SheetPoolElement extends Object {
     public var imgUrl:String = "";
     public var jsonUrl:String = "";
@@ -27,8 +26,10 @@ package com.util.ui.bitmapSheet {
     public function SheetPoolElement() {
       super();
     }
-    public function setBitmapData(data:BitmapData):void{
+    public function setBitmapData(data:BitmapData, json:Object):void {
       _bitmapData = data;
+      _jsonObj = json;
+      _json.init(_jsonObj);
     }
     public function load():void {
       if(loader == null){
@@ -56,7 +57,7 @@ package com.util.ui.bitmapSheet {
     }
 
     protected function init():void{
-      _json.init(_jsonObj)
+      _json.init(_jsonObj);
       this._bitmapData = _img.bitmapData;
       this._sheet = new Sheet(this._bitmapData);
       for each(var obj:Object in _json.frames){
@@ -126,6 +127,14 @@ package com.util.ui.bitmapSheet {
       callBack = null;
       imgUrl = "";
       jsonUrl = "";
+    }
+
+    public function get jsonStr():String{
+      var result:String = "";
+      if(_jsonObj != null){
+        result = JSON.stringify(_jsonObj);
+      }
+      return result;
     }
 
     public function get success():Boolean {

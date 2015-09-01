@@ -40,10 +40,10 @@ package com.util.ui.unity {
         data.draw(this._source);
         this._sourceBitmap = new Bitmap(data,"auto",false);
       }
-      this._left = left;
-      this._top = top;
-      this._right = right;
-      this._bottom = bottom;
+      this._left = left<1?1:left;
+      this._top = top<1?left:top;
+      this._right = right<1?left:right;
+      this._bottom = bottom<1?left:bottom;
       this._oh = source.height;
       this._ow = source.width;
       initInstance();
@@ -65,30 +65,33 @@ package com.util.ui.unity {
     private function addToParent():void {
       this.addChild(this._bg);
     }
- /*   private function renderData():void{
-      this._leftCenter.x = 0 ; this._leftCenter.y = this._top;
-      this._leftBottom.x = 0 ; this._leftBottom.y = this._leftCenter.y + this._leftCenter.height;
-      this._centerTop.x = this._left ; this._centerTop.y = 0;
-      this._center.x = this._left ; this._center.y = this._top;
-      this._centerBottom.x = this._left ; this._centerBottom.y = this._center.y + this._center.height;
-      this._rightTop.x = this._centerTop.x + this._centerTop.width ; this._rightTop.y = 0;
-      this._rightCenter.x = this._center.x + this._center.width ; this._rightCenter.y = this._top;
-      this._rightBottom.x = this._centerBottom.x + this._centerBottom.width ; this._rightBottom.y = this._rightCenter.y + this._rightCenter.height;
-      var w:int = this._left+this._right+this._center.width;
-      var h:int = this._top+this._bottom+this._center.height;
-      var data:BitmapData = new BitmapData(w, h,true,0x00ffffff);
-
-      data.copyPixels(_leftTop.bitmapData,new Rectangle(0,0,_leftTop.width,_leftTop.height),new Point(0,0),null,null,true);
-      data.copyPixels(_leftCenter.bitmapData,new Rectangle(0,0,_leftCenter.width,_leftCenter.height),new Point(0,_leftCenter.y),null,null,true);
-      data.copyPixels(_leftBottom.bitmapData,new Rectangle(0,0,_leftBottom.width,_leftBottom.height),new Point(0,_leftBottom.y),null,null,true);
-      data.copyPixels(_centerTop.bitmapData,new Rectangle(0,0,_centerTop.width,_centerTop.height),new Point(_centerTop.x,_centerTop.y),null,null,true);
-      data.copyPixels(_center.bitmapData,new Rectangle(0,0,_center.width,_center.height),new Point(_center.x,_center.y),null,null,true);
-      data.copyPixels(_centerBottom.bitmapData,new Rectangle(0,0,_centerBottom.width,_centerBottom.height),new Point(_centerBottom.x,_centerBottom.y),null,null,true);
-      data.copyPixels(_rightTop.bitmapData,new Rectangle(0,0,_rightTop.width,_rightTop.height),new Point(_rightTop.x,_rightTop.y),null,null,true);
-      data.copyPixels(_rightCenter.bitmapData,new Rectangle(0,0,_rightCenter.width,_rightCenter.height),new Point(_rightCenter.x,_rightCenter.y),null,null,true);
-      data.copyPixels(_rightBottom.bitmapData,new Rectangle(0,0,_rightBottom.width,_rightBottom.height),new Point(_rightBottom.x,_rightBottom.y),null,null,true);
-      this._bg.bitmapData = data;
-    }*/
+//    private function renderData():void{
+//      this._leftCenter.x = 0 ; this._leftCenter.y = this._top;
+//      this._leftBottom.x = 0 ; this._leftBottom.y = this._leftCenter.y + this._leftCenter.height;
+//      this._centerTop.x = this._left ; this._centerTop.y = 0;
+//      this._center.x = this._left ; this._center.y = this._top;
+//      this._centerBottom.x = this._left ; this._centerBottom.y = this._center.y + this._center.height;
+//      this._rightTop.x = this._centerTop.x + this._centerTop.width ; this._rightTop.y = 0;
+//      this._rightCenter.x = this._center.x + this._center.width ; this._rightCenter.y = this._top;
+//      this._rightBottom.x = this._centerBottom.x + this._centerBottom.width ; this._rightBottom.y = this._rightCenter.y + this._rightCenter.height;
+//      var w:int = this._left+this._right+this._center.width;
+//      var h:int = this._top+this._bottom+this._center.height;
+//      var data:BitmapData = new BitmapData(w, h,true,0x00ffffff);
+//      if(this._bg.bitmapData!=null){
+//        this._bg.bitmapData.dispose();
+//      }
+//
+//      data.copyPixels(_leftTop.bitmapData,new Rectangle(0,0,_leftTop.width,_leftTop.height),new Point(0,0),null,null,false);
+//      data.copyPixels(_leftCenter.bitmapData,new Rectangle(0,0,_leftCenter.width,_leftCenter.height),new Point(0,_leftCenter.y),null,null,false);
+//      data.copyPixels(_leftBottom.bitmapData,new Rectangle(0,0,_leftBottom.width,_leftBottom.height),new Point(0,_leftBottom.y),null,null,false);
+//      data.copyPixels(_centerTop.bitmapData,new Rectangle(0,0,_centerTop.width,_centerTop.height),new Point(_centerTop.x,_centerTop.y),null,null,false);
+//      data.copyPixels(_center.bitmapData,new Rectangle(0,0,_center.width,_center.height),new Point(_center.x,_center.y),null,null,false);
+//      data.copyPixels(_centerBottom.bitmapData,new Rectangle(0,0,_centerBottom.width,_centerBottom.height),new Point(_centerBottom.x,_centerBottom.y),null,null,false);
+//      data.copyPixels(_rightTop.bitmapData,new Rectangle(0,0,_rightTop.width,_rightTop.height),new Point(_rightTop.x,_rightTop.y),null,null,false);
+//      data.copyPixels(_rightCenter.bitmapData,new Rectangle(0,0,_rightCenter.width,_rightCenter.height),new Point(_rightCenter.x,_rightCenter.y),null,null,false);
+//      data.copyPixels(_rightBottom.bitmapData,new Rectangle(0,0,_rightBottom.width,_rightBottom.height),new Point(_rightBottom.x,_rightBottom.y),null,null,false);
+//      this._bg.bitmapData = data;
+//    }
     private function render():void {
       this._leftCenter.x = 0 ; this._leftCenter.y = this._top;
       this._leftBottom.x = 0 ; this._leftBottom.y = this._leftCenter.y + this._leftCenter.height;

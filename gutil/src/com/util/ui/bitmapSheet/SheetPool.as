@@ -6,7 +6,7 @@ package com.util.ui.bitmapSheet {
   import flash.display.BitmapData;
   import flash.display.Loader;
 
-  public class SheetPool extends Object {
+  public class SheetPool extends Object{
     private var _map:Object = {};
     private var _keys:Array = [];
     private var _clazz:Class;
@@ -18,6 +18,7 @@ package com.util.ui.bitmapSheet {
         _clazz = clazz;
       }
     }
+
     public function getElement(name:String,json:Object,bitmapData:BitmapData):SheetPoolElement{
       var result:SheetPoolElement;
       if(_keys.indexOf(name)<0){
@@ -27,7 +28,7 @@ package com.util.ui.bitmapSheet {
       if(ele == null) {
         ele = new _clazz();
         _map[name] = ele;
-        ele.setBitmapData(bitmapData);
+        ele.setBitmapData(bitmapData,json);
       }
       result = ele;
       return result;

@@ -2,6 +2,8 @@
  * Created by wbguan on 2015/8/31.
  */
 package imgUI {
+  import com.util.ui.unity.LR9Bitmap;
+
   import flash.display.Sprite;
 
   import tools.uiProvider.NOrg;
@@ -26,6 +28,10 @@ package imgUI {
       var norg:NOrg = new NOrg(element);
       var btn:NButton = norg.getBtn("back");
       this.addChild(btn);
+      var bg:LR9Bitmap = norg.getScaleBg("leave");
+      this.addChild(bg);
+      bg.y = 100;bg.x = 100;
+      bg.resizeCenter(200,200);
     }
   }
 }

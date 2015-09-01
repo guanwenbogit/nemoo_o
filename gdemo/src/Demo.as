@@ -11,6 +11,8 @@ package {
 
     import imgRect.ImgRectTool;
 
+    import imgUI.LR9BitmapDemo;
+
     import imgUI.NDemo;
 
     import mk.MKDemo;
@@ -29,6 +31,7 @@ package {
 ////        addChild(textField);
 //        addChild(new GridTool());
         this.addChild(new NDemo());
+//        this.addChild(new LR9BitmapDemo());
     }
 }
 }

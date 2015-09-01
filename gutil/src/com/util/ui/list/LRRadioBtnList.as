@@ -84,6 +84,8 @@ package com.util.ui.list {
           this._current.setMouseDown();
           this._current.lockState();
           this.dispatchEvent(new LRRadioBtnEvent(LRRadioBtnEvent.CHANGE_EVENT, index));
+        }else{
+          selectCurrent();
         }
       }else{
         if (this._current != null) {
@@ -92,6 +94,10 @@ package com.util.ui.list {
         }
         this._current = null;
       }
+    }
+
+    protected function selectCurrent():void {
+      this.dispatchEvent(new LRRadioBtnEvent(LRRadioBtnEvent.SELECT_CURRENT_EVENT, this._index));
     }
     public function clear():void {
       while(this._btns.length>0){

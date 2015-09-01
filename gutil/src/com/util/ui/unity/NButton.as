@@ -19,9 +19,10 @@ package com.util.ui.unity {
     public function NButton(up:BitmapData, txt:String = "", over:BitmapData = null, down:BitmapData = null, dis:BitmapData = null) {
       _up = up;
       _txt = txt;
-      _down = down || up;
-      _dis = dis || up;
       _over = over || up;
+      _down = down || _over;
+      _dis = dis || _down;
+
       initInstance();
       this.addEventListener(MouseEvent.MOUSE_DOWN, onTouch);
       this.addEventListener(MouseEvent.ROLL_OVER, onTouch);
