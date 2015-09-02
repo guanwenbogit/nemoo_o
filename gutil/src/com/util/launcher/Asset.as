@@ -1,4 +1,7 @@
 package com.util.launcher {
+  import flash.display.BitmapData;
+  import flash.display.DisplayObject;
+
   /**
    * @author wbguan
    */
@@ -33,7 +36,25 @@ package com.util.launcher {
     public function set url(value:String):void {
       _url = value;
     }
+    private var _displayObj:DisplayObject
+    private var _content:Object;
     public function Asset() {
+    }
+
+    public function set content(value:Object):void {
+      _content = value;
+    }
+
+    public function get displayObj():DisplayObject {
+      return _displayObj;
+    }
+
+    public function set displayObj(value:DisplayObject):void {
+      _displayObj = value;
+    }
+
+    public function get content():Object {
+      return _content;
     }
   }
 }

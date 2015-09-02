@@ -22,15 +22,15 @@ package com.util.ui.bitmapSheet {
     private var _jsonObj:Object;
     private var loader:SheetLoader;
 
-    private var _buffer:Object = new Object();
     public function SheetPoolElement() {
       super();
     }
     public function setBitmapData(data:BitmapData, json:Object):void {
       _bitmapData = data;
       _jsonObj = json;
-      _json.init(_jsonObj);
+      init();
     }
+
     public function load():void {
       if(loader == null){
         loader = new SheetLoader();
@@ -45,6 +45,7 @@ package com.util.ui.bitmapSheet {
       _jsonObj = param2;
       if(_img != null && _jsonObj != null) {
         _success = true;
+        this._bitmapData = _img.bitmapData;
         this.init();
       }else{
         _success = false;
@@ -58,7 +59,6 @@ package com.util.ui.bitmapSheet {
 
     protected function init():void{
       _json.init(_jsonObj);
-      this._bitmapData = _img.bitmapData;
       this._sheet = new Sheet(this._bitmapData);
       for each(var obj:Object in _json.frames){
         var frame:Frame = new Frame(obj);
@@ -66,20 +66,6 @@ package com.util.ui.bitmapSheet {
       }
     }
 
-/*    private function createBufferBitmap(name:String):Bitmap{
-      var result:Bitmap = new Bitmap();
-      var arr:Array = this._buffer[name] as Array;
-      if(arr == null){
-        arr = [];
-        this._buffer[name] = arr;
-      }
-      arr.push(result);
-      return result;
-    }*/
-    /*
-     * one can get a bitmap without bitmapData before init func was called
-     * then after called init func,that bitmap would be filled with bitmapData ,if the name was a frame name.
-     * */
     public function getBitmap(name:String):Bitmap{
       var result:Bitmap;
       result = this._sheet.getTileBitMap(getFrame(name));
@@ -114,8 +100,8 @@ package com.util.ui.bitmapSheet {
 
     }
     public function dispose():void{
-      if(_img != null){
-        _img.bitmapData.dispose();
+      if(_bitmapData!=null){
+        _bitmapData.dispose();
       }
       if(this.loader != null){
         this.loader.dispose();

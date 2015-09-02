@@ -19,7 +19,8 @@ package com.util.launcher {
 		private var _isRunning : Boolean = false;
 		private var _waitQueue : Array = new Array();
 		private var _dispatcher : EventDispatcher;
-
+    private var _assetMap:Object = {};
+		private var _loaders:Array = [];
 		public function get step() : int {
 			return _step;
 		}
@@ -63,6 +64,12 @@ package com.util.launcher {
 		}
 
 		private function onMutipleError(event : AssetEvent) : void {
+			var target:AssetLoader = event.target as AssetLoader;
+			if(target!=null){
+				target.removeEventListener(AssetEvent.COMPLETE_EVENT, onMutipleComplete);
+				target.removeEventListener(AssetEvent.ERROR_EVENT, onMutipleError);
+				target.dispose();
+			}
 			if (event.data.isRetry) {
 				errorReport(event);
 				this.loadMu();
@@ -88,6 +95,9 @@ package com.util.launcher {
 		private function onComplete(event : AssetEvent) : void {
 			trace("[LaunchManager/onComplete] " + event.url);
 			this._launcherBuffer.push(event.name);
+			if(event.data.displayObj!=null&&event.data.content!=null){
+				_assetMap[event.name] = event.data;
+			}
 			this._currentStep++;
 			_allReport[event.url] = 1;
 			this.dispatcher.dispatchEvent(new LauncherEvent(INSIDE_EVENT));
@@ -97,6 +107,12 @@ package com.util.launcher {
 		}
 
 		private function onMutipleComplete(event : AssetEvent) : void {
+			var target:AssetLoader = event.target as AssetLoader;
+			if(target!=null){
+				target.removeEventListener(AssetEvent.COMPLETE_EVENT, onMutipleComplete);
+				target.removeEventListener(AssetEvent.ERROR_EVENT, onMutipleError);
+			}
+			_loaders.push(target);
 			this._multipleProgress.push(event.url);
 			onComplete(event);
 			loadMu();
@@ -126,12 +142,25 @@ package com.util.launcher {
 			this.dispatcher.addEventListener(INSIDE_EVENT, onInside);
 		}
 
+		public function getAssets(name:String):Asset{
+			var result:Asset;
+			result = _assetMap[name];
+			return result;
+		}
+
 		public function get dispatcher() : EventDispatcher {
 			return _dispatcher;
 		}
 
 		public function dispose():void {
-
+      while(_loaders.length>0){
+				var loader:AssetLoader = _loaders.pop();
+				loader.dispose();
+			}
+			for(var key:String in this._assetMap){
+				this._assetMap[key] = null;
+			}
+			this._assetMap = null;
 		}
 	}
 }
