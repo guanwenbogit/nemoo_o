@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="phenix">
+    <configurations>
+      <configuration name="phenix" pure-as="true" main-class="MainShell" output-file="MainShell.swf" output-folder="$MODULE_DIR$/bin">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry library-id="e98d5627-126d-4faf-8531-92fb42e6ad36">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="gutil" build-configuration-name="gutil">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="flex_sdk_4.6" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="compiler.define" value="CONFIG::LOCALE&#9;true&#10;CONFIG::DEBUG&#9;true" />
+          </map>
+          <option name="additionalOptions" value="-includes=com.support.Crypto1" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="e98d5627-126d-4faf-8531-92fb42e6ad36" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="gutil" exported="" />
+  </component>
+</module>
