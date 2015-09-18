@@ -52,6 +52,7 @@ package com.util.ui.bitmapSheet {
         loader.dispose();
         loader = null;
       }
+      trace("SheetPoolElement loaded  "+ this.imgUrl + " | " + this.jsonUrl + " ; " + (this._bitmapData != null) + " | " + (this._json != null));
       if(callBack != null){
         callBack(this);
       }

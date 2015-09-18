@@ -6,16 +6,14 @@ package bobo.modules.hud {
   import flash.display.Sprite;
 
   public class HudForm {
-    private var _box:Sprite;
-    private var _ui:Sprite;
+    private var _box:Sprite = new Sprite();
+    private var _ui:Sprite = new Sprite();
     private var _root:DisplayObjectContainer;
     public function HudForm() {
     }
 
     public function init(root:DisplayObjectContainer):void {
       _root = root;
-      _box = new Sprite();
-      _ui = new Sprite();
       this._root.addChild(_box);
       this._root.addChild(_ui);
     }

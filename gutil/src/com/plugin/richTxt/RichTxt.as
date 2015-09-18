@@ -2,8 +2,6 @@
  * Created by wbguan on 2015/4/27.
  */
 package com.plugin.richTxt {
-  import com.plugin.richTxt.IRichElement;
-  import com.plugin.richTxt.IRichTextField;
   import com.util.ui.shape.LRRectangle;
 
   import flash.display.DisplayObject;
@@ -16,13 +14,23 @@ package com.plugin.richTxt {
     private var _imgMapping:IRichImgMapping;
     private var _bg:DisplayObject;
     private var _tf:TextFormat;
+
     public function RichTxt() {
       super();
+
+    }
+    public function autoSize(param:String):void{
 
     }
     public function setFormat(tf:TextFormat):void{
       _tf = tf;
       this._core.setFormat(_tf);
+    }
+    public function get textWidth():int{
+      return Math.ceil(_core.textWidth);
+    }
+    public function get textHeight():int{
+      return Math.ceil(_core.textHeight);
     }
     public function setBg(flag:Boolean,color:uint,alpha:Number = 1.0):void{
       this._core.setBg(flag,color,alpha)

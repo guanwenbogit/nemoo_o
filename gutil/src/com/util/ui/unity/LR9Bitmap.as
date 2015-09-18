@@ -125,6 +125,8 @@ package com.util.ui.unity {
       }
     }
     private function getBitmap(x:int,y:int,w:int,h:int):Bitmap {
+      w = w<1?1:w;
+      h = h<1?1:h;
       var result:Bitmap ;
       var data:BitmapData = new BitmapData(w, h,true,0x00ffffff);
       data.copyPixels(this._sourceBitmap.bitmapData, new Rectangle(x,y,w,h), new Point(0,0));

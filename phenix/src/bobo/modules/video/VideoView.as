@@ -7,6 +7,8 @@ package bobo.modules.video {
   import com.plugin.log.LogUtil;
 
   import flash.display.Sprite;
+  import flash.text.TextField;
+  import flash.text.TextFieldAutoSize;
 
   public class VideoView extends Sprite {
     private var _core:LiveVideoPlayer;
@@ -16,6 +18,14 @@ package bobo.modules.video {
     public function init(userNum:int,w:int,h:int):void{
       _core = new LiveVideoPlayer(userNum,w,h);
       this.addChild(_core.video);
+      var text:TextField = new TextField();
+      text.width = 20;
+      text.height = 10;
+      this.addChild(text);
+      text.multiline = true;
+      text.text = "sadfasgasldjflk;sajdfasdfasg111";
+      text.wordWrap = true;
+      text.autoSize = TextFieldAutoSize.LEFT;
     }
 
     public function play(url:String,userNum:int):void{

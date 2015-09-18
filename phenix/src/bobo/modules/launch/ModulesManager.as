@@ -21,6 +21,7 @@ package bobo.modules.launch {
     }
     private function buildInstance():void{
       dispatcher.dispatchEvent(new SimpleEvent(SimpleType.VIDEO_INIT,null));
+      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.LEFT_INIT,null));
 
     }
     private function onLauncher(name:String):void {

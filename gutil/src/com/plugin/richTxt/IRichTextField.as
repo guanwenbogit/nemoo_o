@@ -42,6 +42,7 @@ package com.plugin.richTxt {
     function get pixelMaxScrollV():int;
     function get wordWrap():Boolean;
     function set wordWrap(value:Boolean):void;
-
+    function get textWidth():int;
+    function get textHeight():int;
   }
 }

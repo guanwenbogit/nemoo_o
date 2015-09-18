@@ -8,23 +8,18 @@ package com.plugin.richTxt {
 
   import flash.display.DisplayObject;
   import flash.display.Sprite;
-  import flash.events.KeyboardEvent;
   import flash.text.TextFieldAutoSize;
   import flash.text.TextFormat;
   import flash.text.engine.TextBaseline;
-  import flash.ui.Keyboard;
-  import flash.ui.KeyboardType;
 
 
   import flashx.textLayout.edit.EditManager;
   import flashx.textLayout.edit.SelectionManager;
-  import flashx.textLayout.edit.SelectionState;
   import flashx.textLayout.elements.FlowElement;
   import flashx.textLayout.elements.InlineGraphicElement;
   import flashx.textLayout.elements.LinkElement;
   import flashx.textLayout.elements.ParagraphElement;
   import flashx.textLayout.elements.SpanElement;
-  import flashx.textLayout.elements.TextFlow;
   import flashx.textLayout.events.FlowElementMouseEvent;
   import flashx.textLayout.formats.TextDecoration;
   import flashx.textLayout.formats.TextLayoutFormat;
@@ -398,6 +393,21 @@ package com.plugin.richTxt {
 
     public function set wordWrap(value:Boolean):void {
       this._core.wordWrap = value;
+    }
+    public function autoSize(param:String):void{
+      if(param !=null && param.length>0){
+        this._core.autoSize = param;
+      }else{
+        this._core.autoSize = TextFieldAutoSize.NONE;
+      }
+    }
+
+    public function get textWidth():int {
+      return this._core.textWidth;
+    }
+
+    public function get textHeight():int {
+      return this._core.textHeight;
     }
   }
 }
