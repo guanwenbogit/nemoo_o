@@ -7,9 +7,12 @@ package {
   import bobo.config.InitConfig;
   import bobo.framework.RoomContext;
   import bobo.modules.main.MainView;
+  import bobo.plugins.IPlugins;
   import bobo.util.AlignUtil;
 
   import com.plugin.log.LogUtil;
+
+  import flash.display.Loader;
 
   import flash.display.Sprite;
   import flash.display.StageAlign;
@@ -17,6 +20,9 @@ package {
   import flash.events.Event;
 
   import robotlegs.bender.framework.impl.Context;
+
+  import tools.uiProvider.NProvider;
+
   [SWF(backgroundColor = 0xcccccc)]
   public class MainShell extends Sprite{
     private var _context:Context;
@@ -40,6 +46,7 @@ package {
       LogUtil.info("main shell ","MainShell");
       var main:MainView = new MainView();
       this.addChild(main);
+
     }
 
   }

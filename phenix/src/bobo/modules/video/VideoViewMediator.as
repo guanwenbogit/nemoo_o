@@ -5,6 +5,8 @@ package bobo.modules.video {
 
   import bobo.util.AlignUtil;
 
+  import flash.geom.Point;
+
   import robotlegs.bender.bundles.mvcs.Mediator;
 
   public class VideoViewMediator extends Mediator {
@@ -19,7 +21,7 @@ package bobo.modules.video {
       view.play(videoModel.url,videoModel.userNum);
       videoModel.userNumSignal.add(onUserNumChange);
       videoModel.urlSignal.add(onUrlChange);
-      AlignUtil.align(view,AlignUtil.H_CENTER, AlignUtil.V_TOP);
+      AlignUtil.align(view,AlignUtil.H_CENTER, AlignUtil.V_TOP,new Point(0,30));
     }
 
     private function onUrlChange():void {

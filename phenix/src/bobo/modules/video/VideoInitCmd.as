@@ -6,6 +6,8 @@ package bobo.modules.video {
   import bobo.modules.main.RoomModel;
   import bobo.modules.scene.SceneForm;
 
+  import com.plugin.log.LogUtil;
+
   import robotlegs.bender.bundles.mvcs.Command;
 
   public class VideoInitCmd extends Command {
@@ -18,8 +20,8 @@ package bobo.modules.video {
 
     override public function execute():void {
       super.execute();
+      LogUtil.info("video","VideoInitCmd");
       videoModel.userNum = InitConfig.userNum;
-
       var video:VideoView = new VideoView();
       scene.video.addChild(video);
     }

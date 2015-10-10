@@ -1,5 +1,7 @@
 package com.util.ui.list {
 
+  import com.util.ui.unity.BaseBtn;
+
   import flash.display.DisplayObject;
   import flash.events.MouseEvent;
 
@@ -54,6 +56,16 @@ package com.util.ui.list {
       addBtnEvent(btn);
       addToParent(btn);
     }
+    public function replaceBtn(btn:BaseBtn,i:int):void{
+      if(i>=0&&i){
+        this._btns.splice(i,0,btn);
+        var tmp:BaseBtn =this._btns[i];
+        this.addChild(btn)
+        this.swapChildren(btn,tmp);
+        addBtnEvent(btn);
+        removeBtn(tmp);
+      }
+    }
     public function removeBtn(btn:BaseBtn):void{
       var i:int = this._btns.indexOf(btn);
       if(i>=0){
@@ -61,6 +73,7 @@ package com.util.ui.list {
         if(this.contains(btn)){
           this.removeChild(btn);
         }
+        btn.removeEventListener(MouseEvent.CLICK, onClick);
       }
     }
     public function appendBtns(...args):void {

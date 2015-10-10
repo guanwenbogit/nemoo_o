@@ -6,11 +6,13 @@ package bobo.framework {
   import bobo.config.ModulesConfig;
   import bobo.framework.event.SimpleEvent;
   import bobo.framework.event.SimpleType;
+  import bobo.plugins.IPlugins;
 
   import com.plugin.log.LogUtil;
 
 
   import flash.display.DisplayObjectContainer;
+  import flash.display.Loader;
   import flash.events.IEventDispatcher;
 
   import robotlegs.bender.bundles.mvcs.MVCSBundle;
@@ -18,6 +20,8 @@ package bobo.framework {
   import robotlegs.bender.extensions.signalCommandMap.SignalCommandMapExtension;
 
   import robotlegs.bender.framework.impl.Context;
+
+
 
   public class RoomContext extends Context {
     private var _root:DisplayObjectContainer;
@@ -28,7 +32,7 @@ package bobo.framework {
     }
 
     private function setup():void{
-      this.install(MVCSBundle, SignalCommandMapExtension)
+     this.install(MVCSBundle, SignalCommandMapExtension)
               .configure(AppConfig,ModulesConfig)
               .configure(new ContextView(_root))
               .initialize(initCallback);

@@ -20,9 +20,12 @@ package bobo.modules.launch {
       launcher.launchSignal.add(onLauncher);
     }
     private function buildInstance():void{
+      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.SCENE_BG,null));
       dispatcher.dispatchEvent(new SimpleEvent(SimpleType.VIDEO_INIT,null));
-      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.LEFT_INIT,null));
-
+//      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.LEFT_INIT,null));
+      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.DRUID_INIT,null));
+      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.PALADIN_INIT,null));
+      dispatcher.dispatchEvent(new SimpleEvent(SimpleType.GIFT_PAD_INIT,null));
     }
     private function onLauncher(name:String):void {
       // new all modules instance here

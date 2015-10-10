@@ -3,12 +3,14 @@
  */
 package bobo.util {
   import flash.display.DisplayObject;
+  import flash.geom.Point;
   import flash.geom.Rectangle;
 
   public class AlignInfo extends Object {
     private var _target:DisplayObject;
     private var _h:String = "";
     private var _v:String = "";
+    private var _offset:Point = new Point();
     public function AlignInfo() {
       super();
     }
@@ -35,6 +37,14 @@ package bobo.util {
 
     public function set v(value:String):void {
       _v = value;
+    }
+
+    public function get offset():Point {
+      return _offset;
+    }
+
+    public function set offset(value:Point):void {
+      _offset = value;
     }
   }
 }

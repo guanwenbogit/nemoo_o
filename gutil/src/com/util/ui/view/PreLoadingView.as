@@ -16,6 +16,8 @@ package com.util.ui.view {
   public class PreLoadingView extends Sprite {
     private var _bg:DisplayObject;
     private var _rect:LRRoundRectangle;
+    protected var _preW:int = 0;
+    protected var _preH:int = 0;
     public function PreLoadingView(loading:DisplayObject,w:int,h:int) {
       super();
       _bg = loading;
@@ -30,6 +32,8 @@ package com.util.ui.view {
       this.addChild(this._bg);
       _bg.x = int((w-_bg.width)/2);
       _bg.y = int((h-_bg.height)/2);
+      _preW = w;
+      _preH = h;
     }
 
     public function init():void{

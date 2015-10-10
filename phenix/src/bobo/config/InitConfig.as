@@ -51,5 +51,8 @@ package bobo.config {
       token.gen(tokenStr);
       userNum =obj["userNum"];
     }
+    public static function roomShowType():int{
+      return 0;
+    }
   }
 }

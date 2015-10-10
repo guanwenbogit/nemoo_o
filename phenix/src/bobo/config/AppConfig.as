@@ -5,6 +5,9 @@ package bobo.config {
   import bobo.constants.MessageType;
   import bobo.framework.event.SimpleEvent;
   import bobo.framework.event.SimpleType;
+  import bobo.modules.plugin.PluginPreLoader;
+  import bobo.modules.plugin.PluginPreLoaderMediator;
+  import bobo.modules.plugin.PluginsCollection;
   import bobo.modules.hud.HudForm;
   import bobo.modules.init.DashBoardCmd;
   import bobo.modules.init.InitMainShellCmd;
@@ -54,6 +57,7 @@ package bobo.config {
     }
 
     public function configure():void {
+
       injector.map(RoomModel).asSingleton();
       injector.map(NetWork).asSingleton();
       injector.map(Launcher).asSingleton();
@@ -64,10 +68,12 @@ package bobo.config {
       injector.map(SceneForm).asSingleton();
       injector.map(HudForm).asSingleton();
       injector.map(Layer).asSingleton();
+      injector.map(PluginsCollection).asSingleton();
       mediatorMap.map(MainView).toMediator(MainViewMediator);
       mediatorMap.map(VideoView).toMediator(VideoViewMediator);
       mediatorMap.map(LeftView).toMediator(LeftViewMediator);
       mediatorMap.map(FeaturePanel).toMediator(FeatureMediator);
+      mediatorMap.map(PluginPreLoader).toMediator(PluginPreLoaderMediator);
       cmdMap.map(SimpleType.MAIN_SHELL_INIT,SimpleEvent).toCommand(InitMainShellCmd);
       cmdMap.map(MessageType.DASHBOARD,MessageSimpleEvent).toCommand(DashBoardCmd);
 

@@ -8,6 +8,8 @@ package bobo.modules.main {
     private var _roomId:int = 0;
     private var _self:UserInfoModel;
     private var _token:String = "";
+    private var _inited:Boolean = false;
+
     public function RoomModel() {
       super();
     }
@@ -37,7 +39,11 @@ package bobo.modules.main {
     }
 
     public function init(respBody:Object):void {
+      _inited = true;
+    }
 
+    public function get inited():Boolean {
+      return _inited;
     }
   }
 }

@@ -14,6 +14,9 @@ package bobo.modules.net {
     public function enterRoom():void{
       netWork.send(ActionMessageUtil.createEnterRoomMessage(room));
     }
+    public function giftList():void{
+      netWork.send(ActionMessageUtil.createGiftListMessage());
+    }
     public function MessageSender() {
     }
   }

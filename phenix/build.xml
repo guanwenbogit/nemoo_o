@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Texas" basedir=".">
+<project name="Phenix" basedir=".">
     <property file="build.properties"/>
     <tstamp>
         <format property="TODAY"
@@ -39,6 +39,147 @@
         <delete file="${src.dir}/com/support/build_date.as"/>
         <echo file="${src.dir}/com/support/build_date.as" append="false">${build_date_file_source.cache}</echo>
     </target>
+    <target name="PakGiftPad" description="giftPad">
+        <echo>[MainFile] Pull the code firstly plz</echo>
+        <echo>[MainFile] Building main swf</echo>
+        <echo>[MainFile] Using Flex SDK at: ${mxmlc.dir}</echo>
+        <mkdir dir="${output.dir}"/>
+
+        <java jar="${mxmlc.dir}/lib/mxmlc.jar" dir="${mxmlc.dir}/frameworks" fork="true" maxmemory="512m"
+              failonerror="true">
+            <arg value="${src.dir}/PakSimple.as"/>
+            <arg value="-incremental=true"/>
+            <arg value="-source-path+=${src.dir}"/>
+            <arg value="-output=${dist.dir}/n_giftPad.swf"/>
+            <arg value="-target-player=11"/>
+            <arg value="-static-link-runtime-shared-libraries=true"/>
+            <arg value="-library-path+=${libs.dir}"/>
+            <arg value="-include-libraries=${libs.dir}/n_giftpad.swc"/>
+            <arg value="-define+=CONFIG::DEBUG,false"/>
+            <arg value="-define+=CONFIG::LOCALE,false"/>
+            <arg value="-define+=CONFIG::BETA,false"/>
+
+            <!-- Include classes from SWCs in this folder, but only the ones we use. -->
+
+            <arg line="-optimize"/>
+            <arg line="-debug=false"/>
+
+            <!--<arg line="-external-library-path+=${libs.dir}/Swiftsuspenders-v2.0.0rc3.swc"/>-->
+            <!--<arg line="-external-library-path+=${libs.dir}/robotlegs-framework-v2.1.0.swc"/>-->
+            <!--<arg line="-external-library-path+=${libs.dir}/robotlegs-extensions-SignalCommandMap-v1.0.0.swc"/>-->
+
+            <arg value="-verbose-stacktraces=true"/>
+            <arg value="-headless-server=true"/>
+            <arg value="-keep-as3-metadata+=Test,Suite,Before,BeforeClass,After,AfterClass,RunWith,Ignore,Inject"/>
+        </java>
+        <copy todir="${bin.dir}" file="${dist.dir}/n_giftPad.swf"/>
+    </target>
+
+    <target name="PakMainShell" description="MainShell">
+        <echo>[MainFile] Pull the code firstly plz</echo>
+        <echo>[MainFile] Building main swf</echo>
+        <echo>[MainFile] Using Flex SDK at: ${mxmlc.dir}</echo>
+        <mkdir dir="${output.dir}"/>
+
+        <java jar="${mxmlc.dir}/lib/mxmlc.jar" dir="${mxmlc.dir}/frameworks" fork="true" maxmemory="512m"
+              failonerror="true">
+            <arg value="${src.dir}/MainShell.as"/>
+            <arg value="-incremental=true"/>
+            <arg value="-source-path+=${src.dir}"/>
+            <arg value="-source-path+=${gutil.dir}"/>
+            <arg value="-output=${dist.dir}/MainShell.swf"/>
+            <arg value="-target-player=11"/>
+            <arg value="-static-link-runtime-shared-libraries=true"/>
+            <arg value="-library-path+=${libs.dir}"/>
+
+            <arg value="-define+=CONFIG::DEBUG,false"/>
+            <arg value="-define+=CONFIG::LOCALE,false"/>
+            <arg value="-define+=CONFIG::BETA,false"/>
+
+            <!-- Include classes from SWCs in this folder, but only the ones we use. -->
+
+            <arg line="-optimize"/>
+            <arg line="-debug=false"/>
+
+            <arg value="-verbose-stacktraces=true"/>
+            <arg value="-headless-server=true"/>
+            <arg value="-keep-as3-metadata+=Test,Suite,Before,BeforeClass,After,AfterClass,RunWith,Ignore,Inject"/>
+        </java>
+        <copy todir="${bin.dir}" file="${dist.dir}/MainShell.swf" overwrite="true"/>
+    </target>
+
+    <target name="PakDruid" description="druid">
+        <echo>[MainFile] Pull the code firstly plz</echo>
+        <echo>[MainFile] Building main swf</echo>
+        <echo>[MainFile] Using Flex SDK at: ${mxmlc.dir}</echo>
+        <mkdir dir="${output.dir}"/>
+
+        <java jar="${mxmlc.dir}/lib/mxmlc.jar" dir="${mxmlc.dir}/frameworks" fork="true" maxmemory="512m"
+              failonerror="true">
+            <arg value="${src.dir}/bobo/plugins/druid/Druid.as"/>
+            <arg value="-incremental=true"/>
+
+            <arg value="-source-path+=${src.dir}"/>
+            <arg value="-source-path+=${gutil.dir}"/>
+            <arg value="-output=${dist.dir}/druid_plugins.swf"/>
+            <arg value="-target-player=11"/>
+            <arg value="-static-link-runtime-shared-libraries=true"/>
+            <arg value="-library-path+=${libs.dir}"/>
+
+            <arg value="-define+=CONFIG::DEBUG,false"/>
+            <arg value="-define+=CONFIG::LOCALE,false"/>
+            <arg value="-define+=CONFIG::BETA,false"/>
+
+            <!-- Include classes from SWCs in this folder, but only the ones we use. -->
+
+            <arg line="-optimize"/>
+            <arg line="-debug=false"/>
+
+            <arg line="-external-library-path+=${libs.dir}/Swiftsuspenders-v2.0.0rc3.swc" />
+            <arg line="-external-library-path+=${libs.dir}/robotlegs-framework-v2.1.0.swc"/>
+            <arg line="-external-library-path+=${libs.dir}/robotlegs-extensions-SignalCommandMap-v1.0.0.swc"/>
+
+            <arg value="-verbose-stacktraces=true"/>
+            <arg value="-headless-server=true"/>
+            <arg value="-keep-as3-metadata+=Test,Suite,Before,BeforeClass,After,AfterClass,RunWith,Ignore,Inject"/>
+        </java>
+        <copy todir="${bin.dir}" file="${dist.dir}/druid_plugins.swf" overwrite="true"/>
+    </target>
+    <target name="PakSub" description="sub main">
+        <echo>[MainFile] Pull the code firstly plz</echo>
+        <echo>[MainFile] Building main swf</echo>
+        <echo>[MainFile] Using Flex SDK at: ${mxmlc.dir}</echo>
+        <mkdir dir="${output.dir}"/>
+
+        <java jar="${mxmlc.dir}/lib/mxmlc.jar" dir="${mxmlc.dir}/frameworks" fork="true" maxmemory="512m"
+              failonerror="true">
+            <arg value="${src.dir}/bobo/plugins/subDemo/SubMain.as"/>
+            <arg value="-incremental=true"/>
+            <arg value="-source-path+=${src.dir}"/>
+            <arg value="-source-path+=${gutil.dir}"/>
+            <arg value="-output=${dist.dir}/sub_plugins.swf"/>
+            <arg value="-target-player=11"/>
+            <arg value="-static-link-runtime-shared-libraries=true"/>
+            <arg value="-library-path+=${libs.dir}"/>
+
+            <arg value="-define+=CONFIG::DEBUG,false"/>
+            <arg value="-define+=CONFIG::LOCALE,false"/>
+            <arg value="-define+=CONFIG::BETA,false"/>
+
+            <!-- Include classes from SWCs in this folder, but only the ones we use. -->
+
+            <arg line="-optimize"/>
+            <arg line="-debug=false"/>
+            <arg line="-external-library-path+=${libs.dir}/Swiftsuspenders-v2.0.0rc3.swc" />
+            <arg line="-external-library-path+=${libs.dir}/robotlegs-framework-v2.1.0.swc"/>
+            <arg line="-external-library-path+=${libs.dir}/robotlegs-extensions-SignalCommandMap-v1.0.0.swc"/>
+
+            <arg value="-verbose-stacktraces=true"/>
+            <arg value="-headless-server=true"/>
+            <arg value="-keep-as3-metadata+=Test,Suite,Before,BeforeClass,After,AfterClass,RunWith,Ignore,Inject"/>
+        </java>
+        <copy todir="${bin.dir}" file="${dist.dir}/sub_plugins.swf" overwrite="true"/>
+    </target>
     <target name="Pak_Demo" description="Compile Game to dist">
         <echo>[MainFile] Pull the code firstly plz</echo>
         <echo>[MainFile] Building main swf</echo>
@@ -49,7 +190,9 @@
               failonerror="true">
             <!--<arg value="${src.dir}/bobo/game/MainGame.as"/>-->
             <arg value="-incremental=true"/>
+
             <arg value="-source-path+=${src.dir}"/>
+            <arg value="-source-path+=${gutil.dir}"/>
             <arg value="-output=/MainGame.swf"/>
             <arg value="-target-player=11"/>
             <arg value="-default-size=1000,800"/>
@@ -67,7 +210,7 @@
             <!--<arg line="-external-library-path+=${libs.dir}/robotlegs-framework-v2.1.0.swc"/>-->
             <!--<arg line="-external-library-path+=${libs.dir}/robotlegs-extensions-SignalCommandMap-v1.0.0.swc"/>-->
             <arg value="-library-path+=${libs.dir}"/>
-            <arg value="-library-path+=${libs.dir}"/>
+            <arg value="-include-libraries=${libs.dir}/red.swc"/>
             <arg value="-verbose-stacktraces=true"/>
             <arg value="-headless-server=true"/>
             <arg value="-keep-as3-metadata+=Test,Suite,Before,BeforeClass,After,AfterClass,RunWith,Ignore,Inject"/>

@@ -124,5 +124,49 @@ package com.util.ui.unity {
     public function set lock(value:Boolean):void {
       _lock = value;
     }
+
+    public function get up():BitmapData {
+      return _up;
+    }
+
+    public function set up(value:BitmapData):void {
+      if(this._img.bitmapData == _up){
+        this._img.bitmapData = value;
+      }
+      _up = value;
+    }
+
+    public function get over():BitmapData {
+      return _over;
+    }
+
+    public function set over(value:BitmapData):void {
+      if(this._img.bitmapData == _over){
+        this._img.bitmapData = value;
+      }
+      _over = value;
+    }
+
+    public function get down():BitmapData {
+      return _down;
+    }
+
+    public function set down(value:BitmapData):void {
+      if(this._img.bitmapData == _down){
+        this._img.bitmapData = value;
+      }
+      _down = value;
+    }
+
+    public function get dis():BitmapData {
+      return _dis;
+    }
+
+    public function set dis(value:BitmapData):void {
+      if(this._img.bitmapData == _dis){
+        this._img.bitmapData = value;
+      }
+      _dis = value;
+    }
   }
 }

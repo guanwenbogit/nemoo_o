@@ -2,6 +2,8 @@
  * Created by wbguan on 2015/4/22.
  */
 package com.util.ui.bitmapSheet {
+  import com.util.ui.bitmapSheet.Frame;
+
   import flash.display.Bitmap;
   import flash.display.BitmapData;
   import flash.display.DisplayObject;
@@ -40,10 +42,10 @@ package com.util.ui.bitmapSheet {
 
     private function loaded(param1:DisplayObject,param2:Object):void {
       _img = param1 as Bitmap;
-      _img.smoothing = true;
-      _img.pixelSnapping = PixelSnapping.ALWAYS;
       _jsonObj = param2;
       if(_img != null && _jsonObj != null) {
+        _img.smoothing = true;
+        _img.pixelSnapping = PixelSnapping.ALWAYS;
         _success = true;
         this._bitmapData = _img.bitmapData;
         this.init();
@@ -52,7 +54,7 @@ package com.util.ui.bitmapSheet {
         loader.dispose();
         loader = null;
       }
-      trace("SheetPoolElement loaded  "+ this.imgUrl + " | " + this.jsonUrl + " ; " + (this._bitmapData != null) + " | " + (this._json != null));
+      trace("SheetPoolElement loaded  "+ this.imgUrl + " | " + this.jsonUrl + " ; " + (this._bitmapData != null) + " | " + (this._jsonObj != null));
       if(callBack != null){
         callBack(this);
       }
@@ -69,7 +71,10 @@ package com.util.ui.bitmapSheet {
 
     public function getBitmap(name:String):Bitmap{
       var result:Bitmap;
-      result = this._sheet.getTileBitMap(getFrame(name));
+      var frame:Frame = getFrame(name);
+      if(frame != null) {
+        result = this._sheet.getTileBitMap(frame);
+      }
       return result;
     }
     public function getBitmapData(name):BitmapData{

@@ -28,7 +28,9 @@ package tools.uiProvider {
       _name = _sheet.imgUrl;
       init();
     }
-
+    public function get success():Boolean{
+      return _sheet != null&&_sheet.success;
+    }
     private function init():void {
       for each(var frame:Frame in _sheet.frames) {
         parse(frame);

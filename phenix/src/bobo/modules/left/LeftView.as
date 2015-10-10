@@ -32,7 +32,7 @@ package bobo.modules.left {
       _feature.y = 75;
       _link.y = 410;
       _head.guestMode();
-      _bg.height = 768;
+      _bg.height = 1050;
     }
     public function LeftView() {
       super();

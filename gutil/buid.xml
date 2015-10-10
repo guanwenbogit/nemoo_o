@@ -52,5 +52,14 @@
             <!--<arg value="-external-library-path+=${libs.dir}/as3-signals-v0.9-BETA.swc"/>-->
         </java>
     </target>
+    <target name="Compc Gutil">
+        <java jar="${mxmlc.dir}/lib/compc.jar" dir="${mxmlc.dir}/frameworks" fork="true" maxmemory="512m"
+              failonerror="true">
+            <arg value="-source-path+=${src.dir}"/>
+            <arg value="-library-path+=${libs.dir}"/>
+            <arg value="-include-sources+=${src.dir}"/>
+            <!--<arg value="-external-library-path+=${libs.dir}/as3-signals-v0.9-BETA.swc"/>-->
+        </java>
+    </target>
 
 </project>
