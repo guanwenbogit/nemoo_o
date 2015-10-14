@@ -3,15 +3,12 @@
  */
 package bobo.plugins.base {
   import bobo.plugins.IPlugins;
-
-
   import flash.display.Sprite;
-
   import robotlegs.bender.framework.impl.Context;
 
-  public class BasePlugins extends Sprite implements IPlugins {
+  public dynamic class BasePlugins extends Sprite implements IPlugins {
     protected var context:Context;
-    protected var configClazz:Class;
+    protected var configs : Array = [];
     public function BasePlugins() {
       super();
     }
@@ -22,18 +19,15 @@ package bobo.plugins.base {
      * */
     public function init(...args):void {
       context = args[0];
-      config();
-      if(configClazz == null) {
-        throw new Error("Can not find the config class,please override the config method and set the configClass ");
-      }else{
-        this.context.configure(configClazz);
-      }
+      this.context.configure.apply(context, configs);
+      initView();
     }
 
-
-    protected function config():void {
+    protected function initView():void {
 
     }
 
+    public function dispose():void {
+    }
   }
 }

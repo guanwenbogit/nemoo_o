@@ -9,12 +9,9 @@ package bobo.plugins.subDemo {
   public class SubMain extends  BasePlugins{
     public function SubMain() {
       super();
+      configs = [SubConfig];
     }
 
-    override protected function config():void {
-      super.config();
-      this.configClazz = SubConfig;
-    }
 
     override public function init(...args):void {
       super.init.apply(this,args);

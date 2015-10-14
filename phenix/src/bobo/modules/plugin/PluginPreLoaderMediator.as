@@ -2,7 +2,6 @@
  * Created by wbguan on 2015/10/10.
  */
 package bobo.modules.plugin {
-  import flash.display.DisplayObject;
   import flash.events.Event;
 
   import robotlegs.bender.bundles.mvcs.Mediator;
@@ -13,20 +12,23 @@ package bobo.modules.plugin {
     public var view:PluginPreLoader;
     [Inject]
     public var context:IContext;
+
     override public function initialize():void {
       super.initialize();
-      view.addEventListener(Event.COMPLETE,onComplete);
+      trace("PluginPreLoaderMediator initialize");
+      view.addEventListener(Event.COMPLETE, onComplete);
     }
+
     private function onComplete(event:Event):void {
-      view.init();
-      view.plugin.init(context);
-      view.parent.addChild(view.plugin as DisplayObject);
-      view.parent.removeChild(view);
+      view.removeEventListener(Event.COMPLETE, onComplete);
+      if(view.plugin){
+        view.plugin.init(context);
+      }
     }
 
     override public function destroy():void {
+      view.addEventListener(Event.COMPLETE, onComplete);
       super.destroy();
-      view.removeEventListener(Event.COMPLETE,onComplete);
     }
 
     public function PluginPreLoaderMediator() {

@@ -15,8 +15,7 @@ package bobo.modules.sceneBg {
   import flash.utils.ByteArray;
 
   public class SceneBgView extends PreLoadingView {
-    private var _w:int = 0;
-    private var _h:int = 0;
+
     private var _bg:DisplayObject;
 
     private var _urlReq:URLRequest;
@@ -25,8 +24,7 @@ package bobo.modules.sceneBg {
     private var _buffer:ByteArray = new ByteArray();
     private var _count:int =0;
     public function SceneBgView(loading:DisplayObject, w:int, h:int) {
-      _w = w;
-      _h = h;
+
       super(loading, w, h);
 //      this.alpha = 0.5;
     }

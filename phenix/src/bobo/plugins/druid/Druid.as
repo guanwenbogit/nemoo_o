@@ -43,7 +43,7 @@ package bobo.plugins.druid {
 
     public function Druid() {
       super();
-
+      configs = [DruidConfig];
       initInstance();
       initListener();
     }
@@ -108,11 +108,6 @@ package bobo.plugins.druid {
       _radio.setCurrent(0);
     }
 
-    override protected function config():void {
-      super.config();
-      this.configClazz = DruidConfig;
-    }
-
     override public function init(...args):void {
       super.init.apply(this,args);
     }
@@ -131,9 +126,6 @@ package bobo.plugins.druid {
       appendRadio();
     }
 
-    public function dispose():void {
-
-    }
 
   }
 }

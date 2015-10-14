@@ -11,7 +11,6 @@ package bobo.modules.druid {
 
   import robotlegs.bender.bundles.mvcs.Command;
 
-
   /*
    * Please visit the bobo.plugins.Druid Class for detail.
    * */
@@ -25,10 +24,10 @@ package bobo.modules.druid {
 
     override public function execute():void {
       super.execute();
-      var pre:PluginPreLoader = new PluginPreLoader("druid_plugins.swf", null, 294, 433);
+      var pre:PluginPreLoader = plugins.getPluginPreLoader("druid_plugins.swf","druid");
       pre.load();
+      pre.setLoadingInfo(null,294,433);
       scene.component.addChild(pre);
-      plugins.append("druid", pre);
       LogUtil.info("scene instance " + scene.bg.name,"DruidInitCmd");
     }
 

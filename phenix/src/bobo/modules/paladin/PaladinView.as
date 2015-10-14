@@ -49,8 +49,8 @@ package bobo.modules.paladin {
       super.init();
       _org = NProvider.getOrg(PaladinConstants.UI);
       _bg = _org.getBg("paladin");
-      _bg.width = _preW;
-      _bg.height = _preH;
+      _bg.width = _w;
+      _bg.height = _h;
       this.addChild(_bg);
       _currRankBtn = _org.getBtn("currRankBtn");
       _weekRankBtn = _org.getBtn("weekRankBtn");
