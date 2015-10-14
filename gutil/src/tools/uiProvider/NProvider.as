@@ -53,7 +53,7 @@ package tools.uiProvider {
     public static function loadOrg(url:String, jsonUrl:String, callBack:Function):void {
       trace("NProvider loadOrg " +url);
       if (_orgs[url] == null) {
-        _pool.getSheetMap(url, jsonUrl, function back(ele:SheetPoolElement) {
+        _pool.getSheetMap(url, jsonUrl, function back(ele:SheetPoolElement):void {
           var org:NOrg = new NOrg(ele);
           _orgs[url] = org;
           callBack(org);

@@ -2,9 +2,8 @@
  * Created by wbguan on 2015/8/31.
  */
 package tools.uiProvider {
-  import com.plugin.log.LogUtil;
   import com.util.ui.unity.LR9Bitmap;
-  import com.util.ui.unity.ScaleBitmap;
+
 
   import flash.display.Bitmap;
   import flash.display.BitmapData;

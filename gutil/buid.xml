@@ -53,11 +53,24 @@
         </java>
     </target>
     <target name="Compc Gutil">
+
         <java jar="${mxmlc.dir}/lib/compc.jar" dir="${mxmlc.dir}/frameworks" fork="true" maxmemory="512m"
               failonerror="true">
-            <arg value="-source-path+=${src.dir}"/>
+            <!--<arg value="-source-path+=${src.dir}"/>-->
             <arg value="-library-path+=${libs.dir}"/>
-            <arg value="-include-sources+=${src.dir}"/>
+            <arg value="-include-sources=${src.dir}"/>
+            <arg value="-keep-as3-metadata+=Abstract"/>
+            <arg value="-static-link-runtime-shared-libraries=true"/>
+            <arg value="-verbose-stacktraces=true"/>
+            <arg value="-headless-server=true"/>
+            <arg value="-define+=CONFIG::DEBUG,false"/>
+            <arg value="-define+=CONFIG::LOCALE,false"/>
+            <arg value="-define+=CONFIG::BETA,false"/>
+            <!--<arg value="-include-sources+=${src.dir}/animation"/>-->
+            <!--<arg value="-include-sources+=${src.dir}/interface"/>-->
+            <!--<arg value="-include-sources+=${src.dir}/com"/>-->
+
+            <arg value="-output=${self.dist}/gutil.swc"/>
             <!--<arg value="-external-library-path+=${libs.dir}/as3-signals-v0.9-BETA.swc"/>-->
         </java>
     </target>

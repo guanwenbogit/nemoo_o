@@ -58,7 +58,7 @@ package com.plugin.richTxt {
     public function appendGraphics(id:String,obj:DisplayObject):void{
       this._core.append(new <IRichElement>[this._core.getGraphics(obj,id)]);
     }
-    public function append(param:Vector.<IRichElement>){
+    public function append(param:Vector.<IRichElement>):void {
       this._core.append(param);
     }
     public function appendParagraph(param:Vector.<IRichElement>){

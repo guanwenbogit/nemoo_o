@@ -20,8 +20,8 @@ package com.plugin.richTxt {
 
     function set content(content:Object):void;
 
-    function set type(type:String):void;
-    function set tf(value:TextFormat);
+    function set type(param:String):void;
+    function set tf(value:TextFormat):void;
     function get tf():TextFormat;
   }
 }

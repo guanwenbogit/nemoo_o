@@ -161,7 +161,7 @@ package com.plugin.richTxt {
 
     private function getLastParagraph():ParagraphElement {
       var result:ParagraphElement;
-      var len = _core.textFlow.numChildren;
+      var len:int = _core.textFlow.numChildren;
       while (len - 1 >= 0) {
         result = _core.textFlow.getChildAt(len - 1) as ParagraphElement;
         len--;

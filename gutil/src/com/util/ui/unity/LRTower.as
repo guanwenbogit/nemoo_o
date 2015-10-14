@@ -64,8 +64,8 @@ package com.util.ui.unity {
       if (bits.length > 0) {
         data = new BitmapData(w, h, true, 0x0000000);
         var y:int = 0;
-        for each(var bit:Rectangle in bits){
-          data.copyPixels(_pic,new Rectangle(0,0,bit.width,bit.height),new Point(bit.x,bit.y),null,null,true);
+        for each(var b:Rectangle in bits){
+          data.copyPixels(_pic,new Rectangle(0,0,b.width,b.height),new Point(b.x,b.y),null,null,true);
           y++;
         }
       } else {

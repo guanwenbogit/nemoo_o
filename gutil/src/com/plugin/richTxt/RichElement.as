@@ -38,7 +38,7 @@ package com.plugin.richTxt {
       _id = value;
     }
 
-    public function set tf(value:TextFormat) {
+    public function set tf(value:TextFormat):void {
       _tf = value;
     }
 

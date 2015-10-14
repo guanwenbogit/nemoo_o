@@ -2,7 +2,6 @@
  * Created by wbguan on 2015/4/22.
  */
 package com.util.ui.bitmapSheet {
-  import com.util.ui.bitmapSheet.Frame;
 
   import flash.display.Bitmap;
   import flash.display.BitmapData;
@@ -77,7 +76,7 @@ package com.util.ui.bitmapSheet {
       }
       return result;
     }
-    public function getBitmapData(name):BitmapData{
+    public function getBitmapData(name:String):BitmapData{
       var result:BitmapData;
       result = this._sheet.getTileBitmapData(getFrame(name));
       return result;
