@@ -10,6 +10,7 @@ package bobo.plugins.druid.txt {
   import com.util.ui.shape.LRRectangle;
   import com.util.ui.unity.BaseBtn;
   import com.util.ui.unity.LRButton;
+  import com.util.ui.unity.LROnOffBtn;
 
 
   import flash.display.DisplayObject;
@@ -29,6 +30,9 @@ package bobo.plugins.druid.txt {
     private var _faceBtn:BaseBtn;
     private var _input:ChatInputForm;
     private var _org:NOrg;
+    private var _publishBtn:BaseBtn;
+    private var _whisperBtn:BaseBtn;
+    private var _modeBtn:LROnOffBtn;
     private const H:int = 330;
     public function ChatPanel() {
       super();
@@ -62,6 +66,11 @@ package bobo.plugins.druid.txt {
       _faceBtn.y = H+8;
       _sendBtn.x = _input.width + _input.x+1;
       _flyBtn.x = _sendBtn.width + _sendBtn.x - 5;
+    }
+
+    public function appendElements(arr:Array):void{
+      _list.appendElements(arr);
+      _list.setBarRate(1);
     }
 
     public function append(arr:Vector.<ChatInfo>):void{

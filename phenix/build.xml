@@ -97,7 +97,6 @@
             <arg value="-define+=CONFIG::BETA,false"/>
 
             <!-- Include classes from SWCs in this folder, but only the ones we use. -->
-
             <arg line="-optimize"/>
             <arg line="-debug=false"/>
 

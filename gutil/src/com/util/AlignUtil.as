@@ -1,12 +1,11 @@
 /**
  * Created by wbguan on 2015/8/26.
  */
-package bobo.util {
+package com.util {
   import flash.display.DisplayObject;
   import flash.display.Stage;
   import flash.events.Event;
   import flash.geom.Point;
-  import flash.geom.Rectangle;
 
   public class AlignUtil {
     public static const V_TOP:String = "V_TOP";

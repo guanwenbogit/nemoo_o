@@ -1,5 +1,4 @@
 package bobo.plugins.druid.txt.face {
-  import bobo.modules.druid.txt.face.*;
   import com.plugin.richTxt.IRichImgMapping;
   import com.util.img.ImageHelper;
 

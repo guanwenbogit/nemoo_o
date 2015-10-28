@@ -3,6 +3,8 @@
  */
 package bobo.modules.plugin {
 
+  import bobo.plugins.IPlugins;
+
   import flash.utils.Dictionary;
   public class PluginsCollection extends Object {
     private var _map:Dictionary = new Dictionary();
@@ -28,10 +30,27 @@ package bobo.modules.plugin {
 
     public function hasLoaded(name:String):Boolean{
       var result:Boolean = false;
-      result = (_map[name] != null)
+      result = (_map[name] != null);
       return result;
     }
-
+    public function getPlugin(name:String):IPlugins{
+      var result:IPlugins;
+      if(hasLoaded(name)){
+        result = _map[name];
+      }
+      return result;
+    }
+    public function removeLoader(param:PluginPreLoader):void{
+      var key:String = "";
+      for(key in _map){
+        if(param == _map[key]){
+          break;
+        }
+      }
+      if(key.length >=0){
+        this.remove(key);
+      }
+    }
     public function remove(name:String):PluginPreLoader{
       var result:PluginPreLoader;
       result = _map[name] as PluginPreLoader;

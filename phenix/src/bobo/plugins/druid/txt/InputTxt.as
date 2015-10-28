@@ -39,7 +39,7 @@ package bobo.plugins.druid.txt {
       _core.inputAble(true);
       _core.setMultiline(false);
       _core.setWrap(false);
-      this.addChild(_core);
+      this.addChild(_core.content);
     }
     public function appendGraphics(id:String,obj:DisplayObject):void{
       _core.appendGraphics(id,obj);

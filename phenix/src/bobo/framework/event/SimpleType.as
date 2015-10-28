@@ -13,6 +13,20 @@ package bobo.framework.event {
     public static const PALADIN_INIT:String = "PALADIN_INIT";
     public static const GIFT_PAD_INIT:String = "GIFT_PAD_INIT";
 
+
+    //===============Druid===============
+    /*
+    * switch the tab in the Druid
+    * dispatch SimpleEvent(DRUID_SWITCH_TAB,index:int);
+    * */
+    public static const DRUID_SWITCH_TAB:String = "DRUID_SWITCH_TAB";
+    /*
+     * switch the tab in the Druid
+     * dispatch SimpleEvent(DRUID_PUBLISH_MESSAGE,message:Object);
+     * message {sender:obj,atUser:obj,message:string,title:string,tf:textFormat }
+     * */
+    public static const DRUID_PUBLISH_MESSAGE:String = "DRUID_PUBLISH_MESSAGE";
+
     public function SimpleType() {
       super();
     }

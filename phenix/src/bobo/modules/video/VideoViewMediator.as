@@ -3,7 +3,7 @@
  */
 package bobo.modules.video {
 
-  import bobo.util.AlignUtil;
+  import com.util.AlignUtil;
 
   import flash.geom.Point;
 

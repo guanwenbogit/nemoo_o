@@ -5,11 +5,13 @@ package bobo.modules.druid {
   import bobo.framework.event.SimpleEvent;
   import bobo.modules.plugin.PluginPreLoader;
   import bobo.modules.plugin.PluginsCollection;
+  import bobo.modules.plugin.PluginsInstaller;
   import bobo.modules.scene.SceneForm;
 
   import com.plugin.log.LogUtil;
 
   import robotlegs.bender.bundles.mvcs.Command;
+  import robotlegs.bender.framework.api.IContext;
 
   /*
    * Please visit the bobo.plugins.Druid Class for detail.
@@ -20,13 +22,13 @@ package bobo.modules.druid {
     [Inject]
     public var scene:SceneForm;
     [Inject]
-    public var plugins:PluginsCollection;
+    public var installer:PluginsInstaller;
+    [Inject]
+    public var context:IContext;
 
     override public function execute():void {
       super.execute();
-      var pre:PluginPreLoader = plugins.getPluginPreLoader("druid_plugins.swf","druid");
-      pre.load();
-      pre.setLoadingInfo(null,294,433);
+      var pre:PluginPreLoader = installer.install("druid_plugins.swf","druid",context,null,null,null);
       scene.component.addChild(pre);
       LogUtil.info("scene instance " + scene.bg.name,"DruidInitCmd");
     }

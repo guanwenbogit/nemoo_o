@@ -4,9 +4,12 @@
 package bobo.plugins.druid.txt {
   import bobo.plugins.druid.txt.info.ChatInfo;
 
+  import com.plugin.richTxt.IRichElement;
+
   import com.plugin.richTxt.IRichImgMapping;
 
   import com.util.ui.scrollbar.LRScrollerElement;
+  import com.util.ui.shape.LRRectangle;
   import com.util.ui.unity.LR9Bitmap;
 
   import tools.uiProvider.NOrg;
@@ -29,7 +32,8 @@ package bobo.plugins.druid.txt {
     }
 
     private function initInstance():void {
-      _txt = new OutputTxt(10,10);
+      _txt = new OutputTxt(300,50);
+      _txt.init();
       _txt.setMapping(_mapping);
       this.addChild(_txt);
     }
@@ -65,11 +69,17 @@ package bobo.plugins.druid.txt {
     }
 
     private function renderContent():void {
+      var irich:IRichElement = _txt.core.getGraphics(new LRRectangle(20,20),"id");
+      var s:IRichElement = _txt.core.getSpan(_info.content,"s");
+
+      var arr:Vector.<IRichElement>= new <IRichElement>[irich];
+      _txt.appendParagraph(arr);
       _txt.appendTxt(_info.content);
+      _txt.render();
     }
 
     private function renderBg():void {
-      var org:NOrg = NProvider.getOrg(ChatConstants.BG_1);
+      var org:NOrg = NProvider.getOrg(ChatConstants.BG_UI);
       _bg = org.getScaleBg(_info.bgName);
       if(_bg!=null){
         _txt.x = _bg.left;

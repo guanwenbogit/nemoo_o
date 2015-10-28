@@ -7,6 +7,7 @@ package bobo.modules.plugin {
   import com.util.ui.view.PreLoadingView;
 
   import flash.display.DisplayObject;
+  import flash.display.DisplayObjectContainer;
   import flash.display.Loader;
   import flash.events.Event;
   import flash.events.IOErrorEvent;
@@ -25,23 +26,30 @@ package bobo.modules.plugin {
     private var _clazz:String = "";
     private var _loaded:Boolean = false;
 
+
     public function PluginPreLoader(url:String, loading:DisplayObject, w:int, h:int) {
       super(loading, w, h);
       _url = url;
       _pluginLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onComplete);
       _pluginLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
       _pluginLoader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
-      this.addEventListener(Event.ADDED_TO_STAGE, onAdded);
+    }
+
+    override public function get parent():DisplayObjectContainer {
+      var result:DisplayObjectContainer;
+      result = super.parent;
+      if(result == null){
+        if(_plugin != null && _plugin is DisplayObject){
+          result = (_plugin as DisplayObject).parent;
+        }
+      }
+      return result;
     }
 
     override public function init():void {
       super.init();
     }
 
-    private function onAdded(event:Event):void {
-      trace("PluginPreLoader added to stage");
-      load();
-    }
 
     private function onSecurityError(event:SecurityErrorEvent):void {
 //      LogUtil.error("Invalid plugin :" + _url + " | "+event.text,"PluginPreLoader");
@@ -59,11 +67,22 @@ package bobo.modules.plugin {
       } else {
         _success = true;
         this.init();
-        this.addChild(_plugin as DisplayObject);
       }
       this.dispatchEvent(new Event(Event.COMPLETE));
     }
-
+    public function showPlugin():void{
+      if(_plugin != null && this.parent != null) {
+        if(_plugin is DisplayObject){
+          var obj:DisplayObject = _plugin as DisplayObject;
+          this.parent.addChildAt(obj,this.parent.getChildIndex(this));
+          this.parent.removeChild(this);
+          obj.x = this.parent.x;
+          obj.y = this.parent.y;
+        }else{
+          trace("[PluginPreLoader] _plugins is not a display object. url : "+this._url);
+        }
+      }
+    }
     public function load():void {
       if (!_loaded) {
         _pluginLoader.load(new URLRequest(_url), new LoaderContext(true, ApplicationDomain.currentDomain));

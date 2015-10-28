@@ -2,7 +2,7 @@
  * Created by wbguan on 2015/9/22.
  */
 package bobo.modules.giftPad {
-  import bobo.util.AlignUtil;
+  import com.util.AlignUtil;
 
   import flash.display.Loader;
   import flash.geom.Point;

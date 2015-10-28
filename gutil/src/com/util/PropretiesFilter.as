@@ -1,4 +1,4 @@
-package bobo.util {
+package com.util {
   /**
    * @author wbguan
    */

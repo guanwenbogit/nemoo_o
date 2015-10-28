@@ -2,7 +2,6 @@
  * Created by wbguan on 2015/4/27.
  */
 package com.plugin.richTxt {
-  import com.plugin.richTxt.IRichElement;
 
   import flash.text.TextFormat;
 

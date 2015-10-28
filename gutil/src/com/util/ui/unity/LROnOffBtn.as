@@ -9,10 +9,10 @@ package com.util.ui.unity {
   import com.util.ui.unity.LRButton;
 
   public class LROnOffBtn extends Sprite {
-    protected var _btnOn:LRButton;
-    protected var _btnOff:LRButton;
+    protected var _btnOn:BaseBtn;
+    protected var _btnOff:BaseBtn;
     private var _isOn:Boolean = true;
-    public function LROnOffBtn(on:LRButton,off:LRButton) {
+    public function LROnOffBtn(on:BaseBtn,off:BaseBtn) {
       super();
       _btnOn = on;
       _btnOff = off;
@@ -56,11 +56,11 @@ package com.util.ui.unity {
       }
     }
 
-    public function get btnOff():LRButton {
+    public function get btnOff():BaseBtn {
       return _btnOff;
     }
 
-    public function get btnOn():LRButton {
+    public function get btnOn():BaseBtn {
       return _btnOn;
     }
   }

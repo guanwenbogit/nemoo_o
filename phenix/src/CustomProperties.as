@@ -41,7 +41,7 @@ package {
     public static function get params():Object{
       return {
         roomId:100397,
-        userId:"836819847767349645"
+        userId:"6881432443421840672"
       }
     }
   }

@@ -1,10 +1,9 @@
 /**
  * Created by wbguan on 2015/8/26.
  */
-package bobo.util {
+package com.util {
   import flash.display.DisplayObject;
   import flash.geom.Point;
-  import flash.geom.Rectangle;
 
   public class AlignInfo extends Object {
     private var _target:DisplayObject;

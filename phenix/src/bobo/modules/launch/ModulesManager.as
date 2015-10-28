@@ -4,6 +4,7 @@
 package bobo.modules.launch {
   import bobo.framework.event.SimpleEvent;
   import bobo.framework.event.SimpleType;
+  import bobo.plugins.druid.txt.face.FaceModel;
 
   import com.plugin.log.Log;
   import com.plugin.log.LogUtil;
@@ -15,7 +16,10 @@ package bobo.modules.launch {
     public var dispatcher:IEventDispatcher;
     [Inject]
     public var launcher:Launcher;
+    [Inject]
+    public var faceModel:FaceModel;
     public function init():void{
+      faceModel.init();
       buildInstance();
       launcher.launchSignal.add(onLauncher);
     }

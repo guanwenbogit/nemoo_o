@@ -3,10 +3,7 @@
  */
 package com.util.tween {
   import com.greensock.TweenLite;
-  import com.greensock.TweenMax;
-  import com.greensock.easing.Back;
   import com.greensock.easing.Bounce;
-  import com.greensock.easing.Circ;
 
   import flash.display.DisplayObject;
   import flash.geom.Point;
@@ -16,8 +13,7 @@ package com.util.tween {
     public function TweenUtil() {
       super();
     }
-    public static function moveToWithsParams(target:DisplayObject, origin:Point, dest:Point,
-                                  delay:Number = 0.2,
+    public static function moveToWithsParams(target:DisplayObject, origin:Point, dest:Point,delay:Number = 0.2,
                                   callBack:Function = null,
                                   reset:Boolean = false,
                                   oScale:Number=1.0,

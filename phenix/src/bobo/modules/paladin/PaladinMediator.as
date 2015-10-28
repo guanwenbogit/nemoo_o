@@ -2,7 +2,7 @@
  * Created by wbguan on 2015/9/22.
  */
 package bobo.modules.paladin {
-  import bobo.util.AlignUtil;
+  import com.util.AlignUtil;
 
   import com.plugin.log.LogUtil;
   import com.util.ui.list.LRRadioBtnEvent;

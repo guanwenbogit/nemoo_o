@@ -51,6 +51,13 @@ package com.util.ui.scrollbar {
       super.setRate(rate);
     }
 
+    override public function appendElements(arr:Array):Array {
+      var result:Array = super.appendElements(arr);
+      this.render();
+      this.checkBar();
+      return result;
+    }
+
     override public function appendData(arr:Object):void {
       super.appendData(arr);
       this.render();

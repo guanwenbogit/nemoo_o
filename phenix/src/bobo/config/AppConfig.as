@@ -5,9 +5,6 @@ package bobo.config {
   import bobo.constants.MessageType;
   import bobo.framework.event.SimpleEvent;
   import bobo.framework.event.SimpleType;
-  import bobo.modules.plugin.PluginPreLoader;
-  import bobo.modules.plugin.PluginPreLoaderMediator;
-  import bobo.modules.plugin.PluginsCollection;
   import bobo.modules.hud.HudForm;
   import bobo.modules.init.DashBoardCmd;
   import bobo.modules.init.InitMainShellCmd;
@@ -22,13 +19,22 @@ package bobo.config {
   import bobo.modules.main.MainViewMediator;
   import bobo.modules.main.RoomModel;
   import bobo.modules.net.MessageSender;
+  import bobo.modules.plugin.PluginsInstaller;
+  import bobo.modules.room.IRoom;
   import bobo.modules.scene.SceneForm;
+  import bobo.modules.user.Anchor;
+  import bobo.modules.user.IAnchorInfo;
+  import bobo.modules.user.ISelfInfo;
+  import bobo.modules.user.Self;
   import bobo.modules.video.VideoModel;
   import bobo.modules.video.VideoView;
   import bobo.modules.video.VideoViewMediator;
+  import bobo.plugins.druid.txt.face.FaceModel;
   import bobo.util.app.framework.MessageCenter;
   import bobo.util.app.framework.NetWork;
   import bobo.util.net.event.MessageSimpleEvent;
+
+  import com.plugin.richTxt.IRichImgMapping;
 
   import com.util.layer.Layer;
 
@@ -68,12 +74,18 @@ package bobo.config {
       injector.map(SceneForm).asSingleton();
       injector.map(HudForm).asSingleton();
       injector.map(Layer).asSingleton();
-      injector.map(PluginsCollection).asSingleton();
+      injector.map(PluginsInstaller).asSingleton();
+      injector.map(Self).asSingleton();
+      injector.map(Anchor).asSingleton();
+      injector.map(FaceModel).asSingleton();
+      injector.map(IRichImgMapping).toValue(injector.getInstance(FaceModel));
+      injector.map(IRoom).toValue(injector.getInstance(RoomModel));
+      injector.map(ISelfInfo).toValue(injector.getInstance(Self));
+      injector.map(IAnchorInfo).toValue(injector.getInstance(Anchor));
       mediatorMap.map(MainView).toMediator(MainViewMediator);
       mediatorMap.map(VideoView).toMediator(VideoViewMediator);
       mediatorMap.map(LeftView).toMediator(LeftViewMediator);
       mediatorMap.map(FeaturePanel).toMediator(FeatureMediator);
-      mediatorMap.map(PluginPreLoader).toMediator(PluginPreLoaderMediator);
       cmdMap.map(SimpleType.MAIN_SHELL_INIT,SimpleEvent).toCommand(InitMainShellCmd);
       cmdMap.map(MessageType.DASHBOARD,MessageSimpleEvent).toCommand(DashBoardCmd);
 

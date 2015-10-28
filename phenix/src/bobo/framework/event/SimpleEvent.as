@@ -14,5 +14,9 @@ package bobo.framework.event {
     override public function clone():Event {
       return new SimpleEvent(type,_data,bubbles,cancelable);
     }
+
+    public function get data():Object {
+      return _data;
+    }
   }
 }

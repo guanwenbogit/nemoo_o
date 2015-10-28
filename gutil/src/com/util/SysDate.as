@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 2015/6/29.
  */
-package bobo.util {
+package com.util {
   import flash.utils.getTimer;
 
   public class SysDate {

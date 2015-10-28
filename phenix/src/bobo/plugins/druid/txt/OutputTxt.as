@@ -25,7 +25,7 @@ package bobo.plugins.druid.txt {
     }
     public function init():void{
       _core.init(null,ReflectionUtil.getObj("com.plugin.richTxt.RichTextField") as IRichTextField);
-      this.addChild(_core);
+      this.addChild(_core.content);
       _core.inputAble(false);
       _core.setBg(false,0x654321);
       _core.setMultiline(true);
@@ -89,6 +89,10 @@ package bobo.plugins.druid.txt {
       _core.text = "";
       this._core.inputAble(false);
       this._core.selectable(false);
+    }
+
+    public function get core():RichTxt {
+      return _core;
     }
   }
 }

@@ -7,9 +7,11 @@ package com.plugin.richTxt {
   import flash.display.DisplayObject;
 
   import flash.display.Sprite;
+  import flash.events.Event;
+  import flash.events.IEventDispatcher;
   import flash.text.TextFormat;
 
-  public class RichTxt extends Sprite {
+  public class RichTxt extends Object implements IEventDispatcher{
     private var _core:IRichTextField;
     private var _imgMapping:IRichImgMapping;
     private var _bg:DisplayObject;
@@ -19,6 +21,11 @@ package com.plugin.richTxt {
       super();
 
     }
+
+    public function get content():DisplayObject{
+      return this._core as DisplayObject;
+    }
+
     public function autoSize(param:String):void{
 
     }
@@ -42,9 +49,7 @@ package com.plugin.richTxt {
       _imgMapping = mapping;
       _core = core;
       _core.onLink = onLink;
-      this.addChild(_core as DisplayObject);
       _bg = new LRRectangle(1,1,0xffffff,0);
-      this.addChildAt(_bg,0);
     }
     public function setMapping(mapping:IRichImgMapping):void{
       _imgMapping = mapping;
@@ -117,7 +122,15 @@ package com.plugin.richTxt {
           result = _core.getGraphics(_imgMapping.getDisplayObj(id[1]),id[1])
         }
       }else{
-        result = _core.getSpan(content,content);
+        var display:DisplayObject;
+        if(_imgMapping != null){
+          display = _imgMapping.getDisplayObj(content);
+        }
+        if(display != null){
+          result = _core.getGraphics(display,content)
+        }else{
+          result = _core.getSpan(content,content);
+        }
       }
       return result;
     }
@@ -163,17 +176,33 @@ package com.plugin.richTxt {
     public function setWrap(flag:Boolean):void{
       this._core.wordWrap = flag;
     }
-
-    override public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
+    public function getSpan(content:String,id:String):IRichElement{
+      return _core.getSpan(content,id);
+    }
+    public function getLink(content:String,id:String):IRichElement{
+      return _core.getLink(content,id);
+    }
+    public function getGraphics(content:DisplayObject,id:String):IRichElement{
+      return _core.getGraphics(content,id);
+    }
+    public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
       this._core.addEventListener(type, listener, useCapture, priority, useWeakReference);
     }
 
-    override public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
+    public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
       this._core.removeEventListener(type, listener, useCapture);
     }
 
-    override public function hasEventListener(type:String):Boolean {
+    public function hasEventListener(type:String):Boolean {
       return this._core.hasEventListener(type);
+    }
+
+    public function dispatchEvent(event:Event):Boolean {
+      return false;
+    }
+
+    public function willTrigger(type:String):Boolean {
+      return false;
     }
   }
 }

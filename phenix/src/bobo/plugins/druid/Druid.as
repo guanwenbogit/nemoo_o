@@ -26,7 +26,7 @@ package bobo.plugins.druid {
   /*
    * It is the container and parent of the ChatPanel,VodPanel and FansPanel
    * */
-  public class Druid extends BasePlugins {
+  public class Druid extends BasePlugins{
     private var _bg:DisplayObject;
     private var _chatPanel:ChatPanel;
     private var _vodPanel:VodPanel;

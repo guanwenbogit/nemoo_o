@@ -2,9 +2,10 @@
  * Created by wbguan on 2015/8/19.
  */
 package bobo.modules.main {
+  import bobo.modules.room.IRoom;
   import bobo.modules.user.UserInfoModel;
 
-  public class RoomModel extends Object {
+  public class RoomModel extends Object implements IRoom{
     private var _roomId:int = 0;
     private var _self:UserInfoModel;
     private var _token:String = "";

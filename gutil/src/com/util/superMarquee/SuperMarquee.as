@@ -124,12 +124,13 @@ package com.util.superMarquee {
 
     private function setYLocation(item:Item):void {
       var len:int = _displays.length;
+      var last:Item;
       if(this._v.y > 0){
         if(len < 1){
           item.start.y = - item.height;
           item.end.y = this._displayHeight-item.height;
         }else{
-          var last:Item = _displays[len - 1];
+          last = _displays[len - 1];
           if(last.allDisplayed){
             item.start.y = - item.height - _margin;
           }else{
@@ -142,7 +143,7 @@ package com.util.superMarquee {
           item.start.y = this._displayHeight;
           item.end.y = 0;
         }else{
-          var last:Item = _displays[len - 1];
+          last = _displays[len - 1];
           if(last.allDisplayed){
             item.start.y =  last.height + _margin;
           }else{
@@ -154,12 +155,13 @@ package com.util.superMarquee {
     }
     private function setXLocation(item:Item):void{
       var len:int = _displays.length;
+      var last:Item;
       if(this._v.x <0){
         if(len < 1){
           item.start.x = this._displayWidth;
           item.end.x = 0;
         }else{
-          var last:Item = _displays[len - 1];
+          last = _displays[len - 1];
           if(last.allDisplayed){
             item.start.x = this._displayWidth + this._margin;
           }else{
@@ -172,7 +174,7 @@ package com.util.superMarquee {
           item.start.x = -item.width;
           item.end.x = this._displayWidth - item.width;
         }else{
-          var last:Item = _displays[len - 1];
+          last = _displays[len - 1];
           if(last.allDisplayed){
             item.start.x = -item.width - this._margin;
           }else{

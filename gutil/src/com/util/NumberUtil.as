@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 2015/6/25.
  */
-package bobo.util {
+package com.util {
   public class NumberUtil extends Object {
     public function NumberUtil() {
       super();

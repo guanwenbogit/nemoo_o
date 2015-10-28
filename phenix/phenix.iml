@@ -2,17 +2,17 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="phenix">
     <configurations>
-      <configuration name="phenix" pure-as="true" main-class="MainShell" output-file="MainShell.swf" output-folder="$MODULE_DIR$/bin">
-        <dependencies target-player="11.1">
+      <configuration name="phenix" pure-as="true" main-class="MainShell" output-file="phenix.swf" output-folder="$MODULE_DIR$/bin">
+        <dependencies target-player="11.5">
           <entries>
-            <entry library-id="e98d5627-126d-4faf-8531-92fb42e6ad36">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="gutil" build-configuration-name="gutil">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-id="29fa5951-d7e6-443f-8ebe-2aa57182a495">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
-          <sdk name="flex_sdk_4.6" />
+          <sdk name="4.6.0-AIR_3.5" />
         </dependencies>
         <compiler-options>
           <map>
@@ -31,13 +31,13 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="4.6.0-AIR_3.5" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="gutil" exported="" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="e98d5627-126d-4faf-8531-92fb42e6ad36" />
+        <properties id="29fa5951-d7e6-443f-8ebe-2aa57182a495" />
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
         </CLASSES>
@@ -46,6 +46,5 @@
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="gutil" exported="" />
   </component>
 </module>

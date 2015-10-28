@@ -7,7 +7,7 @@ package bobo.plugins.druid {
   import bobo.framework.event.SimpleType;
   import bobo.modules.scene.SceneForm;
   import bobo.plugins.druid.txt.ChatConstants;
-  import bobo.util.AlignUtil;
+  import com.util.AlignUtil;
 
   import com.plugin.log.LogUtil;
 
@@ -30,6 +30,7 @@ package bobo.plugins.druid {
     public var injector:IInjector;
     [Inject]
     public var dispatcher:IEventDispatcher;
+
     override public function initialize():void {
       super.initialize();
       NProvider.loadOrg(ChatConstants.BG_UI,ChatConstants.BG_UI_JSON,onUi);

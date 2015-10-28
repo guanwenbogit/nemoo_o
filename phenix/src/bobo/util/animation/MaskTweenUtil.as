@@ -42,16 +42,16 @@ package bobo.util.animation {
       if(target.parent !=null){
         target.parent.addChild(mask);
       }else{
-        target.addEventListener(Event.ADDED_TO_STAGE, function added(event:Event){
+        target.addEventListener(Event.ADDED_TO_STAGE, function addedFunc(event:Event){
           target.parent.addChild(mask);
         },false,0,true);
       }
       return mask;
     }
-    public static function moveTo(target:DisplayObject,to:Point,callBack:Function):void {
+    public static function moveTo(target:DisplayObject,toPoint:Point,callBack:Function):void {
       var tween:TweenLite;
       removeTween(target);
-      tween = TweenLite.to(target,0.2,{x:to.x,y:to.y,onComplete:function complete(){
+      tween = TweenLite.to(target,0.2,{x:toPoint.x,y:toPoint.y,onComplete:function completeFunc(){
         removeTween(target);
         removeMask(target);
         if(callBack!=null) {

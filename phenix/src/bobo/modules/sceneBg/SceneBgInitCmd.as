@@ -4,7 +4,7 @@
 package bobo.modules.sceneBg {
   import bobo.framework.event.SimpleEvent;
   import bobo.modules.scene.SceneForm;
-  import bobo.util.AlignUtil;
+  import com.util.AlignUtil;
 
   import com.plugin.log.LogUtil;
 

@@ -1,7 +1,7 @@
 package bobo.modules.gift.filter {
   import bobo.modules.gift.GiftInfo;
   import bobo.modules.gift.IGiftFilter;
-  import bobo.util.PropretiesFilter;
+  import com.util.PropretiesFilter;
 
   /**
    * @author wbguan

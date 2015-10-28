@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 2015/5/26.
  */
-package bobo.util {
+package com.util {
   import flash.net.SharedObject;
 
   public class SO extends Object {

@@ -54,7 +54,7 @@ package bobo.modules.init {
 
     private function initRoomFromConfig():void{
       mainModel.roomId = InitConfig.roomId;
-      mainModel.self = new UserInfoModel();
+      mainModel.self = new UserInfoModel(null);
       mainModel.self.userId = InitConfig.userId;
     }
 

@@ -4,6 +4,7 @@
 package bobo.plugins.druid.txt.info {
   import bobo.modules.user.UserInfoModel;
 
+  import flash.text.TextFormat;
 
 
   public class ChatInfo extends Object {
@@ -11,6 +12,11 @@ package bobo.plugins.druid.txt.info {
     private var _to:UserInfoModel;
     private var _content:String = "";
     private var _bgName:String = "" ;
+    private var _tf:TextFormat;
+    private var _type:String = "";
+    private var _date:String= "";
+    private var _icons:Array =[];
+    private var _title:String = "";
 
     public function ChatInfo() {
       super();
@@ -41,7 +47,19 @@ package bobo.plugins.druid.txt.info {
     }
 
     public function get bgName():String {
-      return _bgName;
+      return _bgName = "chat1";
+    }
+
+    public function set tf(value:TextFormat):void {
+      _tf = value;
+    }
+
+    public function set bgName(value:String):void {
+      _bgName = value;
+    }
+
+    public function get type():String {
+      return _type;
     }
   }
 }
