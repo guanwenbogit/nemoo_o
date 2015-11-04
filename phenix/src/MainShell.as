@@ -44,7 +44,12 @@ package {
       LogUtil.info("main shell ","MainShell");
       var main:MainView = new MainView();
       this.addChild(main);
+      text();
+    }
 
+    private function text(...args):void{
+      var param:Object = args[0];
+      var param1:Object = args[1];
     }
 
   }

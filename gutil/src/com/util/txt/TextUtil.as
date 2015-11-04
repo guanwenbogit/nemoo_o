@@ -37,7 +37,28 @@ package com.util.txt {
       txt.autoSize = TextFieldAutoSize.LEFT;
       txt.mouseEnabled = enable;
     }
-    
+
+    public static function parseFormat(jsonStr:String):TextFormat{
+      var tf:TextFormat = getSysTF(0xffffff,12);
+      var obj:Object;
+      try{
+        obj = JSON.parse(jsonStr);
+      }catch(error:Error){
+
+      }
+      if(obj != null){
+        if(obj["color"] != null){
+          tf.color = obj["color"]
+        }
+        if(obj["font"] != null){
+          tf.font = obj["font"];
+        }
+        if(obj["size"] != null){
+          tf.size = obj["size"];
+        }
+      }
+      return tf;
+    }
     
     public static function moreStr(target : TextField, content : String, width : int) : void {
       target.text = "";
