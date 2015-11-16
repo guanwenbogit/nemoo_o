@@ -15,6 +15,7 @@
           <map>
             <entry key="compiler.define" value="CONFIG::LOCALE&#9;true" />
           </map>
+
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
