@@ -1,7 +1,7 @@
 .settings/
-.iml
-.project
 
+.project
+.iml
 build.properties
 bin/
 dist/
