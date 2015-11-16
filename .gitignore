@@ -1,5 +1,6 @@
 .settings/
 .project
+.iml
 build.properties
 bin/
 dist/
@@ -13,4 +14,4 @@ src/custom/
 .idea
 .DS_Store
 out/
-.iml
+
