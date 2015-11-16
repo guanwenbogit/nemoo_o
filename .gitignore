@@ -1,6 +1,7 @@
 .settings/
-.project
 .iml
+.project
+
 build.properties
 bin/
 dist/
