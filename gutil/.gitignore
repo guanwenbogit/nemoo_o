@@ -1,0 +1,16 @@
+.settings/
+.project
+build.properties
+bin/
+dist/
+cdn/
+fla/*.swf
+html-template/
+bin-debug/
+.actionScriptProperties
+src/custom/
+liveroom.iml
+.idea
+.DS_Store
+out/
+.iml
