@@ -12,6 +12,7 @@
           <sdk name="flex_sdk_4.6" />
         </dependencies>
         <compiler-options>
+
           <map>
             <entry key="compiler.define" value="CONFIG::LOCALE&#9;true" />
           </map>
