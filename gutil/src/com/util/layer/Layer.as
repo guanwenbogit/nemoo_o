@@ -57,9 +57,9 @@ package com.util.layer {
           c.addChild(view.view);
         }
       }
-      if(CONFIG::LOCALE&&location == null){
+//      if(CONFIG::LOCALE&&location == null){
         throw new Error("Layer error the location is null");
-      }
+//      }
     }
 
     public function removeView(layer:String, view:IView, flag:Boolean = false):void {
