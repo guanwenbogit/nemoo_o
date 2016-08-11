@@ -2,13 +2,18 @@
  * Created by guanwenbo on 2016/8/5.
  */
 package bb {
+    import com.data.BaseData;
+
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     import flash.display.Sprite;
-    import flash.geom.ColorTransform;
+
     import flash.geom.Point;
     import flash.geom.Rectangle;
-    import flash.net.drm.VoucherAccessInfo;
+    import flash.system.System;
+    import flash.text.TextFormat;
+    import flash.utils.Dictionary;
+
 
     public class BitmapBarrage extends Sprite {
 
@@ -18,8 +23,12 @@ package bb {
         private var _w:int;
         private var _h:int;
         private var _rect:Rectangle;
-        private var _eles:Vector.<BarrageElement> = new Vector.<BarrageElement>();
-        private var _displayEles:Vector.<BarrageElement> = new Vector.<BarrageElement>();
+
+        protected var _displayEles:Vector.<BarrageElement> = new Vector.<BarrageElement>();
+        private var _gcCount:int = 0;
+        private var _buffer:Vector.<BarrageElement>  = new Vector.<BarrageElement>();
+        private var _elePool:Dictionary = new Dictionary(false);
+
 
         public function BitmapBarrage(w:int, h:int) {
             super();
@@ -28,65 +37,137 @@ package bb {
             initBitmapData();
         }
 
+        public function addContentWithAttributes(content:String,tf:TextFormat,filters:Array):void{
+            if(_buffer.length>80){
+                return;
+            }
+            var ele:BarrageElement = this.getEle(content.length);
+            ele.setTxtFormat(tf);
+            ele.setFilters(filters);
+            ele.setContent(content);
+            _buffer.push(ele);
+        }
+
         public function addContent(content:String):void {
-            var ele:BarrageElement = this.createEle();
-            ele.updateContent(content);
-            _displayEles.push(ele);
-            ele.updateLocation(_rect.width-5,101*Math.random() );
+            var ele:BarrageElement = this.getEle(content.length);
+            _buffer.push(ele);
+            ele.setContent(content);
         }
 
         public function render():void {
             var len:int = _displayEles.length;
-            _bitmapData.fillRect(_rect,0x00ffffff);
-            for (var i:int = len - 1; i >= 0; i--) {
-                var ele:BarrageElement = _displayEles[i];
-                if (this.isEleOutOfEdge(ele.rect)) {
-                    _displayEles.pop();
-                    ele.clear();
-                    _eles.push(ele);
-                } else {
-                    ele.rect.x = ele.rect.x + ele.speed.x;
-                    ele.rect.y = ele.rect.y + ele.speed.y;
-//                    _bitmapData.setPixels(ele.rect,ele.byteArr);
-//                    _bitmapData.merge(ele.bitmapData,new Rectangle(0, 0, ele.rect.width, ele.rect.height),new Point(ele.rect.x, ele.rect.y),0,0,0,1);
+            if(_bitmapData){
+                _bitmapData.fillRect(_rect,0x00000000);
+            }
+            trace("[BitmapBarrage->render 54] len " + len);
+            var destRect:Rectangle = new Rectangle(0,0,1,1);
+            var destPoint:Point = new Point(0,0);
+            var arr:Vector.<BarrageElement> = new <BarrageElement>[];
+            _bitmapData.lock();
 
-                    _bitmapData.copyPixels(ele.bitmapData, new Rectangle(0, 0, ele.rect.width, ele.rect.height), new Point(ele.rect.x, ele.rect.y),null,null,true);
+            for each (var ele:BarrageElement in _displayEles ){
+                var rect:Rectangle = ele.rect;
+                if (this.isEleOutOfEdge(rect)) {
+                    ele.clear();
+                    _gcCount++;
+                    this.collectEle(ele)
+                } else {
+                    rect.x = rect.x + ele.speed.x;
+                    rect.y = rect.y + ele.speed.y;
+                    arr.push(ele);
+                    destRect.width = rect.width;
+                    destRect.height = rect.height;
+                    destPoint.x = rect.x;
+                    destPoint.y = rect.y;
+                    _bitmapData.copyPixels(ele.bitmapData, destRect, destPoint,null,null,true);
                 }
+            }
+            _bitmapData.unlock();
+            if(_gcCount>50){
+                _gcCount = 0;
+                BaseData.forceGC();
+            }
+
+            _displayEles = arr;
+
+            if(_buffer.length>0){
+                var ele:BarrageElement = _buffer.shift();
+                ele.drawContent();
+                _displayEles.push(ele);
             }
         }
 
         public function render2():void{
+
             var len:int = _displayEles.length;
-            _bitmapData.fillRect(_rect,0x00ffffff);
-            for (var i:int = len - 1; i >= 0; i--) {
-                var ele:BarrageElement = _displayEles[i];
-                if (this.isEleOutOfEdge(ele.rect)) {
-                    _displayEles.pop();
+            var arr:Vector.<BarrageElement> = new <BarrageElement>[];
+            for each (var ele:BarrageElement in _displayEles ){
+                var rect:Rectangle = ele.rect;
+                if (this.isEleOutOfEdge(rect)) {
                     ele.clear();
-                    _eles.push(ele);
-                    if(this.contains(ele.bitmap)){
-                        this.removeChild(ele.bitmap);
-                    }
+                    _gcCount++;
+                    this.collectEle(ele);
+                    this.removeChild(ele.bitmap);
                 } else {
-                    if(!this.contains(ele.bitmap)){
+                    if(!ele.bitmap.parent) {
                         this.addChild(ele.bitmap);
                     }
-                    ele.rect.x = ele.rect.x + ele.speed.x;
-                    ele.rect.y = ele.rect.y + ele.speed.y;
-                    ele.bitmap.x = ele.rect.x;
-                    ele.bitmap.y = ele.rect.y;
+                    arr.push(ele);
+                    rect.x = rect.x + ele.speed.x;
+                    rect.y = rect.y + ele.speed.y;
+                    ele.updateBitmap();
                 }
+            }
+            trace("[BitmapBarrage->render 54] len " + len);
+            if(_gcCount>50){
+                _gcCount = 0;
+                BaseData.forceGC();
+            }
+            _displayEles = arr;
+            if(_buffer.length>0){
+                var ele:BarrageElement = _buffer.shift();
+                ele.drawContent();
+                _displayEles.push(ele);
             }
         }
 
         public function resize(w:int, h:int):void {
             _w = w;
             _h = h;
+            trace("[BitmapBarrage->resize 98] len "+ this._displayEles.length);
+            this.reset();
+            this.initBitmapData();
         }
 
-        private function isEleOutOfEdge(rect:Rectangle):Boolean {
+
+        protected function eleSpeed(ele:BarrageElement):Number {
+            return -2.5 - ele.bitmapData.width/20*0.1;
+//            return int(-3*Math.random() - 1.5);
+        }
+
+        protected function eleInitLocation():Point{
+            return new Point(_w,int(_h*Math.random()));
+        }
+
+        private function reset():void{
+            if(_bitmapData){
+                _bitmapData.fillRect(_rect,0x00ffffff);
+                trace("[BitmapBarrage->reset 113] reset bitmap data" );
+                _bitmapData.dispose();
+                _bitmapData = null;
+            }
+            if(_bitmap && this.contains(_bitmap)){
+                trace("[BitmapBarrage->reset 113] reset bitmap" );
+                this.removeChild(_bitmap);
+                _bitmap.bitmapData = null;
+                _bitmap = null;
+            }
+
+        }
+
+        protected function isEleOutOfEdge(rect:Rectangle):Boolean {
             var result:Boolean;
-            result = !_rect.intersects(rect);
+            result = rect.right < 0  ;
             return result;
         }
 
@@ -100,14 +181,34 @@ package bb {
             this._rect = new Rectangle(0, 0, _w, _h);
         }
 
-        private function createEle():BarrageElement {
+        private function createEle(id:int):BarrageElement {
             var result:BarrageElement;
-            result = _eles.pop();
+            var arr:Vector.<BarrageElement> = _elePool[id];
+            if(arr) {
+                result = arr.pop();
+            }
             if (result == null) {
                 result = new BarrageElement();
             }
             return result;
         }
+
+        private function getEle(id:int):BarrageElement{
+            var ele:BarrageElement = this.createEle(id);
+            var location:Point = this.eleInitLocation();
+            ele.updateLocation(location.x,location.y);
+            return ele;
+        }
+
+        private function collectEle(ele:BarrageElement):void{
+            var arr:Vector.<BarrageElement> = _elePool[ele.len];
+            if(!arr){
+                arr = new Vector.<BarrageElement>();
+                _elePool[ele.len] = arr;
+            }
+            arr.push(ele);
+        }
+
     }
 
 }

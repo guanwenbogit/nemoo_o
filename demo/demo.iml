@@ -11,6 +11,17 @@
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
+        <compiler-options>
+          <option name="additionalOptions" value="-debug=true" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+      <configuration name="test" pure-as="true" main-class="Test" output-file="test.swf" output-folder="$MODULE_DIR$/../out/production/demo">
+        <dependencies target-player="11.1">
+          <sdk name="4.6.0" />
+        </dependencies>
         <compiler-options />
         <packaging-air-desktop />
         <packaging-android />
