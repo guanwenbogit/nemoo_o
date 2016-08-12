@@ -44,9 +44,9 @@ package {
         }
 
         private function onEnterFrame(event:Event):void {
-//            for(var i:int = 0 ;i < 1 ; i++) {
-//                _barrage.addContent(getTimer()+"");
-//            }
+            for(var i:int = 0 ;i < 1 ; i++) {
+                _barrage.addContent(getTimer()+"");
+            }
             _barrage.render();
         }
 

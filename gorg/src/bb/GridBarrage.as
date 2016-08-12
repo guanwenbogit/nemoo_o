@@ -18,21 +18,21 @@ package bb {
         private var _elesBuffer:Vector.<BarrageElement> = new Vector.<BarrageElement>();
         private var _grid:Grid;
         private var _lineHeight:int = 0;
-        private var _makeMax:int = 10;
+        private var _makeMax:int = 30;
 
         public function GridBarrage(w:int, h:int, lineHeight:int) {
             super();
             _w = w;
             _h = h;
             _lineHeight = lineHeight;
-            var cellW:int = 200;
-            var cellH:int = 5*lineHeight;
+            var cellW:int = w/2;
+            var cellH:int = 3*lineHeight;
             var column:int = Math.ceil(_w/cellW);
             var row:int =Math.ceil(_h/cellH);
-            _grid = new Grid(row,column,cellW,cellH);
-            _grid.origin.x = 0;
+            _grid = new Grid(row,1,cellW,cellH);
+            _grid.origin.x = w - cellW + 5;
             _grid.origin.y = 0;
-            this.addChild(_grid.bitmap);
+//            this.addChild(_grid.bitmap);
         }
         public function addContentWithAttributes(content:String,tf:TextFormat,filters:Array):void{
             var ele = this.getEle();
@@ -48,9 +48,10 @@ package bb {
         }
         public function render():void{
             trace("[GridBarrage->render 50] display len " + _displayEles.length)
-            renderEle();
+
             this.makeGroup();
             renderGroup();
+            renderEle();
         }
 
         private function makeGroup():void{
@@ -154,7 +155,7 @@ package bb {
                 result = new BarrageElement();
             }
             result.updateBoundsOrigin(_w,int(Math.random()*_h));
-            result.updateSpeed(int(-3/*-3*Math.random()*/),0);
+            result.updateSpeed(int(-3-3*Math.random()),0);
             return result;
         }
 

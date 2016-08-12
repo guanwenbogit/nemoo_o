@@ -59,7 +59,10 @@ package bb {
                 trace("[Grid->bitmap 59] x|y" + point.x+" | "+point.y);
                 bitmapData.fillRect(new Rectangle(point.x,point.y,_cellWidth - 5,_cellHeight - 5),0x55123456);
             }
-            return new Bitmap(bitmapData);
+            var result:Bitmap = new Bitmap(bitmapData);
+            result.x = _origin.x;
+            result.y = _origin.y;
+            return result;
 
         }
 

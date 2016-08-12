@@ -23,7 +23,7 @@ package {
             shape.graphics.endFill();
             this.addChild(shape);
             this.addChild(_bb);
-
+            _bb.lineHeight = 20;
             this.stage.addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown)
         }
 
@@ -49,7 +49,7 @@ package {
             if(_flag) {
                 _bb.addContent("" + getTimer());
             }
-            _bb.render();
+            _bb.render2();
         }
     }
 }
