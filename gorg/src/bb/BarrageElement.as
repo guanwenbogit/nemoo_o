@@ -15,7 +15,7 @@ package bb {
         private var _content:String = "";
         private var _bitmapData:BitmapData;
         private var _txt:TextField;
-        private var _rect:Rectangle;
+        private var _bounds:Rectangle;
         private var _speed:Point = new Point(0, 0);
         private var _bitmap:Bitmap;
         private var _len:int = 0;
@@ -30,24 +30,23 @@ package bb {
             _speed.x = -5;
             _speed.y = 0;
             _bitmap = new Bitmap();
-            _rect = new Rectangle(0,0,1,1);
+            _bounds = new Rectangle(0,0,1,1);
         }
 
         public function drawContent():void {
             _txt.text = _content;
             var width:int = _txt.width;
             var height:int = _txt.height;
+            this.updateRect();
             if(_bitmapData &&_bitmapData.width >= width && _bitmapData.height>=height){
-
                 _bitmapData.fillRect(_bitmapData.rect,0x00ffffff);
             }else{
                 _bitmapData = new BitmapData(width, height, true, 0x00ffffff);
             }
             _bitmapData.draw(_txt);
-            _rect.width = width;
-            _rect.height =height;
+            _bounds.width = width;
+            _bounds.height =height;
             _bitmap.bitmapData = _bitmapData;
-            _speed.x = -(2.1 + _rect.width/20*0.1);
         }
 
         public function updateSpeed(x:Number, y:int):void {
@@ -55,25 +54,31 @@ package bb {
             _speed.y = y;
         }
 
-        public function updateLocation(x:int, y:int):void {
-            _rect.x = x;
-            _rect.y = y;
+        public function updateBoundsOrigin(x:int, y:int):void {
+            _bounds.x = x;
+            _bounds.y = y;
+        }
+
+        public function updateLoaction():void{
+            _bounds.x = _bounds.x + _speed.x;
+            _bounds.y = _bounds.y + _speed.y;
+            updateBitmap();
         }
 
         public function updateBitmap():void{
-            _bitmap.x = _rect.x;
-            _bitmap.y = _rect.y;
+            _bitmap.x = _bounds.x;
+            _bitmap.y = _bounds.y;
         }
 
-        public function get rect():Rectangle {
-            return _rect;
+        public function get bounds():Rectangle {
+            return _bounds;
         }
 
         public function clear():void {
-            _rect.x = 0;
-            _rect.y = 0;
-            _rect.width = 1;
-            _rect.height = 1;
+            _bounds.x = 0;
+            _bounds.y = 0;
+            _bounds.width = 1;
+            _bounds.height = 1;
             _content = "";
 //            this.resetBitmap();
         }
@@ -94,16 +99,19 @@ package bb {
         public function setTxtFormat(tf:TextFormat):void {
             _txt.defaultTextFormat = tf;
             _txt.setTextFormat(tf);
+            this.updateRect();
         }
 
         public function setFilters(arr:Array):void {
             _txt.filters = arr;
+            this.updateRect();
         }
         public function setContent(content:String):void{
             _content = content;
             if(_len == 0) {
                 _len = _content.length;
             }
+            this.updateRect();
         }
 
         private function resetBitmap():void {
@@ -115,6 +123,13 @@ package bb {
                 _bitmapData.dispose();
                 _bitmapData = null;
             }
+        }
+
+        private function updateRect():void{
+            var width:int = _txt.width;
+            var height:int = _txt.height;
+            _bounds.width = width;
+            _bounds.height =height;
         }
 
         public function get len():int {

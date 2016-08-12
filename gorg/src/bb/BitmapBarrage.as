@@ -2,7 +2,7 @@
  * Created by guanwenbo on 2016/8/5.
  */
 package bb {
-    import com.data.BaseData;
+
 
     import flash.display.Bitmap;
     import flash.display.BitmapData;
@@ -28,6 +28,8 @@ package bb {
         private var _gcCount:int = 0;
         private var _buffer:Vector.<BarrageElement>  = new Vector.<BarrageElement>();
         private var _elePool:Dictionary = new Dictionary(false);
+        private var _lineHeight:int = 0;
+        private var _rows:int = 0;
 
 
         public function BitmapBarrage(w:int, h:int) {
@@ -66,7 +68,7 @@ package bb {
             _bitmapData.lock();
 
             for each (var ele:BarrageElement in _displayEles ){
-                var rect:Rectangle = ele.rect;
+                var rect:Rectangle = ele.bounds;
                 if (this.isEleOutOfEdge(rect)) {
                     ele.clear();
                     _gcCount++;
@@ -79,13 +81,13 @@ package bb {
                     destRect.height = rect.height;
                     destPoint.x = rect.x;
                     destPoint.y = rect.y;
-                    _bitmapData.copyPixels(ele.bitmapData, destRect, destPoint,null,null,true);
+                    _bitmapData.copyPixels(ele.bitmapData, destRect, destPoint, null, null, true);
                 }
             }
             _bitmapData.unlock();
             if(_gcCount>50){
                 _gcCount = 0;
-                BaseData.forceGC();
+                System.gc()
             }
 
             _displayEles = arr;
@@ -102,7 +104,7 @@ package bb {
             var len:int = _displayEles.length;
             var arr:Vector.<BarrageElement> = new <BarrageElement>[];
             for each (var ele:BarrageElement in _displayEles ){
-                var rect:Rectangle = ele.rect;
+                var rect:Rectangle = ele.bounds;
                 if (this.isEleOutOfEdge(rect)) {
                     ele.clear();
                     _gcCount++;
@@ -121,7 +123,7 @@ package bb {
             trace("[BitmapBarrage->render 54] len " + len);
             if(_gcCount>50){
                 _gcCount = 0;
-                BaseData.forceGC();
+                System.gc();
             }
             _displayEles = arr;
             if(_buffer.length>0){
@@ -140,13 +142,12 @@ package bb {
         }
 
 
-        protected function eleSpeed(ele:BarrageElement):Number {
-            return -2.5 - ele.bitmapData.width/20*0.1;
-//            return int(-3*Math.random() - 1.5);
+        protected function eleSpeed(ele:BarrageElement):int {
+            return int(-3*Math.random() - 3);
         }
 
         protected function eleInitLocation():Point{
-            return new Point(_w,int(_h*Math.random()));
+            return new Point(_w,int(_rows*Math.random())*_lineHeight);
         }
 
         private function reset():void{
@@ -196,7 +197,9 @@ package bb {
         private function getEle(id:int):BarrageElement{
             var ele:BarrageElement = this.createEle(id);
             var location:Point = this.eleInitLocation();
-            ele.updateLocation(location.x,location.y);
+            ele.updateBoundsOrigin(location.x,location.y);
+            var speed:int = this.eleSpeed(ele);
+            ele.updateSpeed(speed,0);
             return ele;
         }
 
@@ -209,6 +212,14 @@ package bb {
             arr.push(ele);
         }
 
+        public function get lineHeight():int {
+            return _lineHeight;
+        }
+
+        public function set lineHeight(value:int):void {
+            _lineHeight = value;
+            _rows = Math.ceil(_h/_lineHeight);
+        }
     }
 
 }
