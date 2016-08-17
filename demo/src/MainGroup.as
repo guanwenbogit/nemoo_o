@@ -33,7 +33,7 @@ package {
             }
             if(event.keyCode == Keyboard.SPACE){
                 var last:Number = getTimer();
-                for(var i:int = 0 ;i < 100 ; i++) {
+                for(var i:int = 0 ;i < 1 ; i++) {
                     _barrage.addContent(getTimer()+"");
                 }
             }

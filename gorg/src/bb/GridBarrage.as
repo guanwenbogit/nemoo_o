@@ -6,16 +6,21 @@ package bb {
     import flash.geom.Rectangle;
     import flash.text.TextFormat;
 
+    import list.INote;
+
+
+    import list.List;
+
 
     public class GridBarrage extends Sprite {
         private var _w:int = 0;
         private var _h:int = 0;
-        private var _groups:Vector.<BarrageEleGroup> = new Vector.<BarrageEleGroup>();
-        private var _recircle:Vector.<BarrageEleGroup> = new Vector.<BarrageEleGroup>();
-        private var _eles:Vector.<BarrageElement> = new Vector.<BarrageElement>();
-        private var _displayEles:Vector.<BarrageElement> = new Vector.<BarrageElement>();
-        private var _stableEles:Vector.<BarrageElement> = new Vector.<BarrageElement>();
-        private var _elesBuffer:Vector.<BarrageElement> = new Vector.<BarrageElement>();
+        private var _displayEles:List = new List();
+        private var _stableEles:List = new List();
+
+        private var _eles:Vector.<BarrageEleContainer> = new Vector.<BarrageEleContainer>();
+
+        private var _elesBuffer:Vector.<BarrageEleContainer> = new Vector.<BarrageEleContainer>();
         private var _grid:Grid;
         private var _lineHeight:int = 0;
         private var _makeMax:int = 30;
@@ -25,151 +30,123 @@ package bb {
             _w = w;
             _h = h;
             _lineHeight = lineHeight;
-            var cellW:int = w/2;
-            var cellH:int = 3*lineHeight;
-            var column:int = Math.ceil(_w/cellW);
-            var row:int =Math.ceil(_h/cellH);
-            _grid = new Grid(row,1,cellW,cellH);
-            _grid.origin.x = w - cellW + 5;
+            var cellW:int = w / 4;
+            var cellH:int = 3 * lineHeight;
+            var column:int = Math.ceil(_w / cellW);
+            var row:int = Math.ceil(_h / cellH);
+            _grid = new Grid(row, 2, cellW, cellH);
+            _grid.origin.x = w - cellW*2 + 5;
             _grid.origin.y = 0;
 //            this.addChild(_grid.bitmap);
         }
-        public function addContentWithAttributes(content:String,tf:TextFormat,filters:Array):void{
-            var ele = this.getEle();
+
+        public function addContentWithAttributes(content:String, tf:TextFormat, filters:Array):void {
+            var ele = this.getContainer();
             ele.setContent(content);
             ele.setTxtFormat(tf);
             ele.setFilters(filters);
             _elesBuffer.push(ele);
         }
-        public function addContent(content:String):void{
-            var ele = this.getEle();
+
+        public function addContent(content:String):void {
+            var ele = this.getContainer();
             ele.setContent(content);
             _elesBuffer.push(ele);
-        }
-        public function render():void{
-            trace("[GridBarrage->render 50] display len " + _displayEles.length)
-
-            this.makeGroup();
-            renderGroup();
-            renderEle();
+            trace("[GridBarrage->addContent 55] add ");
         }
 
-        private function makeGroup():void{
-            var len:int = _displayEles.length;
-            if(len>=_makeMax) {
-                trace("[GridBarrage->makeGroup 52] len : " +len);
+        public function render():void {
+            this.makeContainer();
+            this.renderContainer();
+        }
+
+        private function makeContainer():void {
+            var len:int = _displayEles.count;
+            if (len >= _makeMax) {
                 var rows:Object = {};
-                var arr:Vector.<BarrageElement> = _displayEles.splice(0, len);
-
-                var groups:Vector.<BarrageEleGroup> = new Vector.<BarrageEleGroup>();
-                for each (var ele:BarrageElement in arr) {
-                    var rowIndex:int = _grid.getIndex(ele.bounds.x,ele.bounds.y);
-                    trace("[GridBarrage->makeGroup 58] rowindex : "+rowIndex);
-                    if(rowIndex>=0) {
+                var ele:BarrageEleContainer = _displayEles.firstNote as BarrageEleContainer;
+                while (ele && !_displayEles.isTail(ele)) {
+                    var rowIndex:int = _grid.getIndex(ele.bounds.x, ele.bounds.y);
+                    var tmp:BarrageEleContainer = ele.next as BarrageEleContainer;
+                    if (rowIndex >= 0) {
                         var row:Object = rows[rowIndex];
                         if (row == null) {
                             row = {};
                             rows[rowIndex] = row;
                         }
                         var speed:int = ele.speed.x;
-                        var group:BarrageEleGroup = row[speed];
-                        if (group == null) {
-                            group = this.getGroup();
-                            row[speed] = group;
-                            this._groups.push(group);
-                            groups.push(group);
-                            group.speed.x = ele.speed.x;
+                        var container:BarrageEleContainer = row[speed];
+                        if (container == null) {
+                            row[speed] = ele;
+                        } else {
+                            container.append(ele);
+                            ele.removeFromList();
                         }
-                        group.append(ele);
-                        if(ele.bitmap.parent){
-                            this.removeChild(ele.bitmap);
-                        }
-
-                    }else {
-                        _stableEles.push(ele);
                     }
+                    ele = tmp;
                 }
-                for each (var group:BarrageEleGroup in groups) {
-                    group.make();
+                ele = _displayEles.firstNote as BarrageEleContainer;
+                while (ele && !_displayEles.isTail(ele)) {
+                    ele.make();
+                    ele = ele.next as BarrageEleContainer;
                 }
-
-                trace("[GridBarrage->makeGroup 79] after len : " +_displayEles.length);
-                trace("[GridBarrage->makeGroup 80] groups len : " + _groups.length);
             }
         }
 
-        private function renderEle():void{
-            var arr:Vector.<BarrageElement> = new Vector.<BarrageElement>();
-            var ele:BarrageElement;
-            for each (ele in _displayEles){
+        private function renderContainer() {
+            var ele:BarrageEleContainer
+            ele = _stableEles.firstNote as BarrageEleContainer;
+            while (ele && !_stableEles.isTail(ele)) {
+                var tmp:INote = ele.next;
                 ele.updateLoaction();
-                if(!ele.bitmap.parent) {
-                    this.addChild(ele.bitmap);
-                }
-            }
-            trace("[GridBarrage->renderEle 108] stable len " + _stableEles.length);
-            for each (ele in _stableEles){
-                ele.updateLoaction();
-                if(isOutOfEdge(ele.bounds)) {
-                    if(ele.bitmap.parent) {
+                if (isOutOfEdge(ele.bounds)) {
+                    if (ele.bitmap.parent) {
                         this.removeChild(ele.bitmap);
                     }
+                    ele.removeFromList();
                     ele.clear();
                     _eles.push(ele);
-                }else {
-                    arr.push(ele);
                 }
+                ele = tmp as BarrageEleContainer;
             }
-            _stableEles = arr;
 
+            ele = _displayEles.firstNote as BarrageEleContainer;
+            while (ele && !_displayEles.isTail(ele)) {
+                var tmp:INote = ele.next;
+                ele.updateLoaction();
+                if (!ele.bitmap.parent) {
+                    this.addChild(ele.bitmap);
+                }
+                var rowIndex:int = _grid.getIndex(ele.bounds.x, ele.bounds.y);
+                trace("column rowindex : " + rowIndex);
+                if(rowIndex<0) {
+                    trace("[GridBarrage->makeContainer 88] stable ");
+                    ele.removeFromList();
+                    _stableEles.add(ele);
+                }
+                ele = tmp as BarrageEleContainer;
+            }
             ele = _elesBuffer.pop();
-            if(ele){
+            if (ele) {
                 ele.drawContent();
-                _displayEles.push(ele);
+                _displayEles.add(ele);
             }
         }
 
-        private function renderGroup():void{
-            var arr:Vector.<BarrageEleGroup> = new Vector.<BarrageEleGroup>();
-            for each (var group:BarrageEleGroup in _groups){
-                group.updateLocation();
-                if(isOutOfEdge(group.bounds)) {
-                    if(group.bitmap.parent) {
-                        this.removeChild(group.bitmap);
-                    }
-                    _recircle.push(group);
-                    group.recircle();
-                }else {
-                    if(!group.bitmap.parent) {
-                        this.addChild(group.bitmap);
-                    }
-                    arr.push(group);
-                }
-            }
-            _groups = arr;
-        }
 
-        private function getEle():BarrageElement{
-            var result:BarrageElement = _eles.pop();
-            if(!result){
-                result = new BarrageElement();
+        private function getContainer():BarrageEleContainer {
+            var result:BarrageEleContainer = _eles.pop();
+            if (!result) {
+                result = new BarrageEleContainer();
             }
-            result.updateBoundsOrigin(_w,int(Math.random()*_h));
-            result.updateSpeed(int(-3-3*Math.random()),0);
+            result.updateBoundsOrigin(_w, int(Math.random() * _h));
+            result.updateSpeed(int(-3 - 3 * Math.random()), 0);
             return result;
         }
 
-        private function getGroup():BarrageEleGroup{
-            var result:BarrageEleGroup = _recircle.pop();
-            if(!result){
-               result = new BarrageEleGroup();
-            }
-            return result;
-        }
-
-        private function isOutOfEdge(rect:Rectangle):Boolean{
+        private function isOutOfEdge(rect:Rectangle):Boolean {
             var result:Boolean;
-            result = rect.right<=0;
+            result = rect.right <= 0;
             return result;
         }
 

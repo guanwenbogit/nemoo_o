@@ -39,7 +39,7 @@ package bb {
             if(result >= _rows){
                 result = -1;
             }
-            trace("[Grid->getRow 38] y "+y + " | row "+ result);
+//            trace("[Grid->getRow 38] y "+y + " | row "+ result);
             return result;
         }
 
@@ -48,7 +48,7 @@ package bb {
             if(result >= _column){
                 result = -1;
             }
-            trace("[Grid->getRow 38] x "+x + " | column "+ result);
+//            trace("[Grid->getRow 38] x "+x + " | column "+ result);
             return result;
         }
 

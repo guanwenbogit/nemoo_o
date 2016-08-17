@@ -10,7 +10,12 @@ package bb {
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
 
-    public class BarrageElement extends Object {
+    import list.INote;
+
+    public class BarrageElement extends Object implements INote {
+
+        private var _next:INote;
+        private var _prev:INote;
 
         private var _content:String = "";
         private var _bitmapData:BitmapData;
@@ -134,6 +139,35 @@ package bb {
 
         public function get len():int {
             return _len;
+        }
+
+
+        public function get next():INote {
+            return _next;
+        }
+
+        public function set next(value:INote) {
+            _next = value;
+        }
+
+        public function get prev():INote {
+            return _prev;
+        }
+
+        public function set prev(value:INote) {
+            _prev = value;
+        }
+
+        public function removeFromList():Boolean {
+            _next.prev = _prev;
+            _prev.next = _next;
+            _next = null;
+            _prev = null;
+            return true;
+        }
+
+        public function getEmptyObj():INote {
+            return null;
         }
     }
 }
