@@ -8,6 +8,9 @@
             <entry module-name="gorg" build-configuration-name="gorg">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="gutil" build-configuration-name="gutil">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -37,6 +40,7 @@
     </content>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="gutil" exported="" />
     <orderEntry type="module" module-name="gorg" exported="" />
   </component>
 </module>

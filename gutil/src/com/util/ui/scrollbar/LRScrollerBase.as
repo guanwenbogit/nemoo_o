@@ -1,5 +1,7 @@
 package com.util.ui.scrollbar {
 
+  import com.util.ui.unity.BaseBtn;
+
   import flash.geom.Point;
   import flash.geom.Rectangle;
   import flash.events.MouseEvent;
@@ -7,8 +9,6 @@ package com.util.ui.scrollbar {
   import flash.events.Event;
   import flash.display.DisplayObject;
   import flash.display.Sprite;
-
-  import com.util.ui.unity.BaseBtn;
 
 
 
@@ -38,7 +38,7 @@ package com.util.ui.scrollbar {
   //==========================================================================
     public var onScolling:Function;
     
-    public function LRScrollerBase(bar:BaseBtn,bg:DisplayObject,distance:Number,scaleBar:Boolean = true) {
+    public function LRScrollerBase(bar:BaseBtn, bg:DisplayObject, distance:Number, scaleBar:Boolean = true) {
       this._bar = bar;
       this._bg = bg;
       this._distance = distance;
@@ -94,13 +94,7 @@ package com.util.ui.scrollbar {
     }
 
     protected function calculateRate():void{
-//      trace("[LRScrollerBase/calculateRate] dis : " + this._distance * this._scale + " | " + this._distance);
-//      trace("[LRScrollerBase/calculateRate] bar h : " + this._bar.height);
-//      trace("[LRScrollerBase/calculateRate] y :"+ this._bar.y);
-//      trace("[LRScrollerBase/calculateRate] " +(this._bar.y - this._scrollBarOriginalPoint.y));
-//      trace("[LRScrollerBase/calculateRate] " +(this._distance * this._scale- this._bar.height));
       this._rate = (this._bar.y - this._scrollBarOriginalPoint.y)/(this._distance * this._scale- this._bar.height);
-//      trace("[LRScrollerBase/calculateRate] rate : " + rate);
       if(1 - this._rate < 0.01){
         this._rate = 1;
         this.dispatchEvent(new LRScrollerEvent(LRScrollerEvent.END_EVENT));

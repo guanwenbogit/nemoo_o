@@ -3,19 +3,23 @@
  */
 package com.util.ui.scrollbar {
 
+  import com.util.ui.unity.BaseBtn;
+
   import flash.display.DisplayObject;
+  import flash.events.MouseEvent;
   import flash.geom.Point;
   import flash.geom.Rectangle;
 
-  import com.util.ui.unity.LRButton;
+
 
   public class LRScrollerBar extends LRScrollerBase {
     private var _isV:Boolean = true;
     private var wh:String = "";
     private var xy:String = "";
-    public function LRScrollerBar(bar:LRButton, bg:DisplayObject, distance:Number, scaleBar:Boolean = true,isV:Boolean = true) {
+    public function LRScrollerBar(bar:BaseBtn, bg:DisplayObject, distance:Number, scaleBar:Boolean = true, isV:Boolean = true) {
       _isV = isV;
       super(bar, bg, distance, scaleBar);
+      this.buttonMode = true;
     }
 
     override protected function initInstance():void {
@@ -35,6 +39,21 @@ package com.util.ui.scrollbar {
       }
       this._rectangle = new Rectangle(this._scrollBarOriginalPoint.x,this._scrollBarOriginalPoint.y,w,h);
       this._orginalRectangle = this._rectangle.clone();
+      this.addEventListener(MouseEvent.CLICK, onSelfClick)
+    }
+
+    private function onSelfClick(event:MouseEvent):void {
+      var target:DisplayObject = event.target as DisplayObject;
+      if(target != _bar && !_bar.contains(target)){
+        var ds:int = 0;
+        if(_isV){
+          ds = this.mouseY;
+        }else {
+          ds = this.mouseX;
+        }
+        var rate:Number = 1.0*ds/distance;
+        this.rate = rate;
+      }
     }
 
 
@@ -47,7 +66,6 @@ package com.util.ui.scrollbar {
 
     override protected function calculateRate():void {
       this._rate = (this._bar[xy] - this._scrollBarOriginalPoint[xy])/(this._distance * this._scale- this._bar[wh]);
-//      trace("[LRScrollerBase/calculateRate] rate : " + rate);
       if(1 - this._rate < 0.01){
         this._rate = 1;
         this.dispatchEvent(new LRScrollerEvent(LRScrollerEvent.END_EVENT));

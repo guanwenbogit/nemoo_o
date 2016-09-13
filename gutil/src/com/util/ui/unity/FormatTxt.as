@@ -1,7 +1,7 @@
 /**
  * Created by wbguan on 15/11/25.
  */
-package com.netease.ugc.live.ui.unity {
+package com.util.ui.unity {
 
   import flash.text.TextField;
   import flash.text.TextFieldAutoSize;
